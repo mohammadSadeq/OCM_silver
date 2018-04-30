@@ -113,8 +113,8 @@ public class Base_checkout extends SelTestCase {
 				Registration.goToRegistrationForm();
 				Registration.fillAndClickRegister((String) RandomUserdetails.get(Registration.keys.firstName),
 						(String) RandomUserdetails.get(Registration.keys.lastName),
-						Pemail, (String) RandomUserdetails.get(Registration.keys.password),
-						(String) RandomUserdetails.get(Registration.keys.password), addressDetails);
+						Pemail, "Elmira College",(String) RandomUserdetails.get(Registration.keys.password),
+						(String) RandomUserdetails.get(Registration.keys.password), "",addressDetails);
 			}
 
 			for (String product : products.split("\n")) {

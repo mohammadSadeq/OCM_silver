@@ -27,70 +27,100 @@ public class Registration extends SelTestCase {
 
 	}
 
-	 
+	// done-ocm
 	public static void typeFirstName(String firstName) throws Exception {
-		getCurrentFunctionName(true);
-		List<String> subStrArr = new ArrayList<String>();
-		List<String> valuesArr = new ArrayList<String>();
-		logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "firstname ", firstName));
-		subStrArr.add(RegistrationSelectors.firstName);
-		valuesArr.add(firstName);
-		SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-		getCurrentFunctionName(false);
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "firstname ", firstName));
+			subStrArr.add(RegistrationSelectors.firstName);
+			valuesArr.add(firstName);
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 
 	}
 
-	
+	// done-ocm
 	public static void typeLastName(String lastName) throws Exception {
-		getCurrentFunctionName(true);
-		List<String> subStrArr = new ArrayList<String>();
-		List<String> valuesArr = new ArrayList<String>();
-		logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "lastname ", lastName));
-		subStrArr.add(RegistrationSelectors.lastName);
-		valuesArr.add(lastName);
-		SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-		getCurrentFunctionName(false);
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "lastname ", lastName));
+			subStrArr.add(RegistrationSelectors.lastName);
+			valuesArr.add(lastName);
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 
 	}
 
-	
+	// done-ocm
 	public static void typeEmailAddress(String address) throws Exception {
-		getCurrentFunctionName(true);
-		List<String> subStrArr = new ArrayList<String>();
-		List<String> valuesArr = new ArrayList<String>();
-		logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "emailAddress ", address));
-		subStrArr.add(RegistrationSelectors.emailAddress);
-		valuesArr.add(address);
-		SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-		getCurrentFunctionName(false);
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "emailAddress ", address));
+			subStrArr.add(RegistrationSelectors.emailAddress);
+			valuesArr.add(address);
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 
 	}
 
-	
+	// done-ocm
 	public static void typePassword(String password) throws Exception {
-		getCurrentFunctionName(true);
-		List<String> subStrArr = new ArrayList<String>();
-		List<String> valuesArr = new ArrayList<String>();
-		logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "password ", password));
-		subStrArr.add(RegistrationSelectors.password);
-		valuesArr.add(password);
-		SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-		getCurrentFunctionName(false);
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "password ", password));
+			subStrArr.add(RegistrationSelectors.password);
+			valuesArr.add(password);
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 	}
 
-	
+	// done-ocm
 	public static void typeConfirmPassword(String confPassword) throws Exception {
-		getCurrentFunctionName(true);
-		List<String> subStrArr = new ArrayList<String>();
-		List<String> valuesArr = new ArrayList<String>();
-		logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "confirmPassword", confPassword));
-		subStrArr.add(RegistrationSelectors.confirmPassword);
-		valuesArr.add(confPassword);
-		SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-		getCurrentFunctionName(false);
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.TYPING_ELEMENT_VALUE, "confirmPassword", confPassword));
+			subStrArr.add(RegistrationSelectors.confirmPassword);
+			valuesArr.add(confPassword);
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 	}
 
-	//done-CBK
+	// done-ocm
 	public static void clickRegisterButton() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -108,57 +138,135 @@ public class Registration extends SelTestCase {
 		}
 
 	}
-	
-	//Done-CBK
-	public static void fillAndClickRegister(String fName, String lName, String email,
-			String pass, String confPass, LinkedHashMap<String, String> addressDetails ) throws Exception {
-		getCurrentFunctionName(true);
 
-		if (!"".equals(fName))
-			typeFirstName(fName);
+	// done-OCM
+	public static void fillAndClickRegister(String fName, String lName, String email, String school, String pass,
+			String confPass, String Type, LinkedHashMap<String, String> addressDetails) throws Exception {
+		try {
+			getCurrentFunctionName(true);
 
-		if (!"".equals(lName))
-			typeLastName(lName);
-		
-		if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.adddressLine)))
-			typeAddressLine1(addressDetails.get(AddressBook.shippingAddress.keys.adddressLine));
-		
-		if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.city)))
-			typeCity(addressDetails.get(AddressBook.shippingAddress.keys.city));
-		
-		if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.city)))
-			typeState(addressDetails.get(AddressBook.shippingAddress.keys.city));
-		
-		if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.zipcode)))
-			typeZipcode(addressDetails.get(AddressBook.shippingAddress.keys.zipcode));
+			if (!"".equals(fName))
+				typeFirstName(fName);
 
-		if (!"".equals(email))
-			typeEmailAddress(email);
-		
-		if (!"".equals(email))
-			typeconfEmailAddress(email);
-		
-		if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.phone)))
-		{
-			typePhone(addressDetails.get(AddressBook.shippingAddress.keys.phone));
-			selectPhoneType("Landline");
+			if (!"".equals(lName))
+				typeLastName(lName);
+
+			if (!"".equals(email))
+				typeEmailAddress(email);
+
+			if (!"".equals(school))
+				typeSchool(school);
+
+			if (!"".equals(pass))
+				typePassword(pass);
+
+			if (!"".equals(confPass))
+				typeConfirmPassword(confPass);
+
+			expandAddressInformation();
+
+			if (!"".equals(Type))
+				selectUserType(Type);
+
+			if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.adddressLine)))
+				typeAddressLine1(addressDetails.get(AddressBook.shippingAddress.keys.adddressLine));
+
+			if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.city)))
+				typeCity(addressDetails.get(AddressBook.shippingAddress.keys.city));
+
+			if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.city)))
+				typeState(addressDetails.get(AddressBook.shippingAddress.keys.city));
+
+			if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.zipcode)))
+				typeZipcode(addressDetails.get(AddressBook.shippingAddress.keys.zipcode));
+
+			if (!"".equals(addressDetails.get(AddressBook.shippingAddress.keys.phone))) {
+				typePhone(addressDetails.get(AddressBook.shippingAddress.keys.phone));
+				selectPhoneType("true");
+			}
+
+			acceptTerms();
+
+			clickRegisterButton();
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
 		}
-		
-		selectBirthMonth("January");
-		selectBirthDay("01");
-		
-		if (!"".equals(pass))
-			typePassword(pass);
-
-		if (!"".equals(confPass))
-			typeConfirmPassword(confPass);
-
-		clickRegisterButton();
-		getCurrentFunctionName(false);
 
 	}
-	
-	//Done-CBK
+
+	// done-OCM
+	private static void acceptTerms() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			subStrArr.add(RegistrationSelectors.terms);
+			valuesArr.add("true");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
+	}
+
+	// done-OCM
+	private static void selectUserType(String type) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			subStrArr.add(RegistrationSelectors.userType + type);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
+	}
+
+	// done-OCM
+	private static void expandAddressInformation() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			subStrArr.add(RegistrationSelectors.addressSection);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-OCM
+	private static void typeSchool(String school) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			subStrArr.add(RegistrationSelectors.school);
+			valuesArr.add(school);
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
 	private static void selectBirthDay(String day) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -173,11 +281,9 @@ public class Registration extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
-		
+
 	}
 
-	
-	//Done-CBK
 	private static void selectBirthMonth(String month) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -192,11 +298,10 @@ public class Registration extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
-		
+
 	}
 
-	
-	//Done-CBK
+	// done-ocm
 	private static void selectPhoneType(String type) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -211,10 +316,10 @@ public class Registration extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
-		
+
 	}
 
-	//Done-CBK
+	// done-ocm
 	private static void typePhone(String phone) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -229,11 +334,9 @@ public class Registration extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
-		
+
 	}
 
-
-	// Done-CBK
 	private static void typeconfEmailAddress(String email) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -248,11 +351,10 @@ public class Registration extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
-		
+
 	}
 
-
-	// Done-CBK
+	// done-ocm
 	private static void typeAddressLine1(String address) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -269,8 +371,8 @@ public class Registration extends SelTestCase {
 		}
 
 	}
-	
-	// Done-CBK
+
+	// done-ocm
 	private static void typeCity(String city) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -287,8 +389,8 @@ public class Registration extends SelTestCase {
 		}
 
 	}
-	
-	// Done-CBK
+
+	// done-ocm
 	private static void typeState(String state) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -305,8 +407,8 @@ public class Registration extends SelTestCase {
 		}
 
 	}
-	
-	// Done-CBK
+
+	// done-ocm
 	private static void typeZipcode(String zipcode) throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -324,8 +426,7 @@ public class Registration extends SelTestCase {
 
 	}
 
-
-	// done-CBK
+	// done-ocm
 	public static String getFirstNameError() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -344,7 +445,7 @@ public class Registration extends SelTestCase {
 		}
 	}
 
-	// done-CBK
+	// done-ocm
 	public static String getLastNameError() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -364,27 +465,8 @@ public class Registration extends SelTestCase {
 
 	}
 
-	//done-CBK
+	// done-ocm
 	public static String getEmailAddressError() throws Exception {
-		try {
-			getCurrentFunctionName(true);
-			List<String> subStrArr = new ArrayList<String>();
-			List<String> valuesArr = new ArrayList<String>();
-			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Email Address Error"));
-			subStrArr.add(RegistrationSelectors.emailAddressError);
-			valuesArr.add("");
-			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-			getCurrentFunctionName(false);
-			return SelectorUtil.textValue.get();
-		} catch (NoSuchElementException e) {
-			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
-			}.getClass().getEnclosingMethod().getName()));
-			throw e;
-		}
-	}
-	
-	//done-CBK
-	public static String getEmailAddressErrorInvalid() throws Exception {
 		try {
 			getCurrentFunctionName(true);
 			List<String> subStrArr = new ArrayList<String>();
@@ -401,19 +483,100 @@ public class Registration extends SelTestCase {
 			throw e;
 		}
 	}
-	
-	
-	
+
+	// done-ocm
+	public static String getEmailAddressErrorInvalid() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Email Address Error"));
+			subStrArr.add(RegistrationSelectors.emailAddressError);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+			return SelectorUtil.textValue.get();
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
+	public static String getSchoolError() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Email Address Error"));
+			subStrArr.add(RegistrationSelectors.schoolError);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+			return SelectorUtil.textValue.get();
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
+	public static String getPasswordError() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Email Address Error"));
+			subStrArr.add(RegistrationSelectors.passwordRulesError);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+			return SelectorUtil.textValue.get();
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
 	public static String getConfirmPasswordError() throws Exception {
-		getCurrentFunctionName(true);
-		List<String> subStrArr = new ArrayList<String>();
-		List<String> valuesArr = new ArrayList<String>();
-		logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Confirm Password Error"));
-		subStrArr.add(RegistrationSelectors.confirmPasswordError);
-		valuesArr.add("");
-		SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
-		getCurrentFunctionName(false);
-		return SelectorUtil.textValue.get();
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Confirm Password Error"));
+			subStrArr.add(RegistrationSelectors.confirmPasswordError);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+			return SelectorUtil.textValue.get();
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
+	public static String getTermsError() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			logs.debug(MessageFormat.format(LoggingMsg.GETTING_TEXT, "Confirm Password Error"));
+			subStrArr.add(RegistrationSelectors.temsError);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+			return SelectorUtil.textValue.get();
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 	}
 
 	public static void verifyRegistrationFormErrors() throws Exception {
@@ -425,7 +588,7 @@ public class Registration extends SelTestCase {
 		getCurrentFunctionName(false);
 	}
 
-	//done- CBK
+	// done-ocm
 	public static String getRegistrationSuccessMessage() throws Exception {
 		try {
 			getCurrentFunctionName(true);
@@ -445,7 +608,7 @@ public class Registration extends SelTestCase {
 
 	}
 
-	//done- CBK
+	// done-ocm
 	public static void goToRegistrationForm() throws Exception {
 		try {
 			getCurrentFunctionName(true);

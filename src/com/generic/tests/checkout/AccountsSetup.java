@@ -95,9 +95,9 @@ public class AccountsSetup extends SelTestCase {
 			Testlogs.get().debug((String) userdetails.get(Registration.keys.password));
 
 			Registration.goToRegistrationForm();
-			Registration.fillAndClickRegister("Accept", "tester", Pemail,
+			Registration.fillAndClickRegister("Accept", "tester", Pemail,"Elmira College", 
 					(String) userdetails.get(Registration.keys.password),
-					(String) userdetails.get(Registration.keys.password), addressDetails);
+					(String) userdetails.get(Registration.keys.password),"",  addressDetails);
 
 			getDriver().get(PagesURLs.getPaymentDetailsPage());
 

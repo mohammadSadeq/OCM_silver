@@ -77,7 +77,9 @@ public class RegistrationBase extends SelTestCase {
 
 	@SuppressWarnings("unchecked") // avoid warning from linked hashmap
 	@Test(dataProvider = "Registration")
-	public void registrationRegressionTest(String caseId, String runTest, String desc, String proprties, String fieldsValidation) throws Exception {
+	public void registrationRegressionTest(String caseId, String runTest, String desc, String proprties, String type,
+			String password, String fieldsValidation) throws Exception {
+		
 		Testlogs.set(new SASLogger("registration "+getBrowserName()));
 		//Important to add this for logging/reporting 
 		setTestCaseReportName("Registration Case");
@@ -91,6 +93,8 @@ public class RegistrationBase extends SelTestCase {
 		String lastNameValidation = (fieldsValidation.split("lastNameValidation:").length >2) ? fieldsValidation.split("lastNameValidation:")[0].split("\n")[0]:"";
 		String passwordValidation =(fieldsValidation.split("PasswordValidation:").length >2) ?  fieldsValidation.split("PasswordValidation:")[0].split("\n")[0]:"";
 		String passwordConfValidation = (fieldsValidation.split("PasswordConfValidation:").length >2) ? fieldsValidation.split("PasswordConfValidation:")[0].split("\n")[0]:"";
+		String schoolValidation = (fieldsValidation.split("schoolValidation:").length >2) ? fieldsValidation.split("schoolValidation:")[0].split("\n")[0]:"";
+		String termsValidation = (fieldsValidation.split("AcceptTermsValidation:").length >2) ? fieldsValidation.split("AcceptTermsValidation:")[0].split("\n")[0]:"";
 		
 		//click on register new user button
 		Registration.goToRegistrationForm();
@@ -100,29 +104,33 @@ public class RegistrationBase extends SelTestCase {
 		//Prepare registration data 
 		String firstName = RandomUtilities.getRandomName();
 		String lastName = RandomUtilities.getRandomName();
-		String password = "P11p"+RandomUtilities.getRandomPassword(8);
+		//String password = "P11p"+RandomUtilities.getRandomPassword(8);
 		String email = RandomUtilities.getRandomEmail();
 		
 		try {
 			if (proprties.contains(freshUser)) {
 				//register new user and validate the results
-				Registration.fillAndClickRegister(firstName,lastName,email,password,password,addressDetails);
+				Registration.fillAndClickRegister(firstName, lastName, email, "Elmira College", password, password,
+						type, addressDetails);
+				
 				String registrationSuccessMsg = Registration.getRegistrationSuccessMessage();
-				sassert().assertTrue(registrationSuccessMsg.toLowerCase().contains(firstName.toLowerCase()), 
-						"Regestration Success, validation failed Expected to have in message: " + firstName +" but Actual message is: " + registrationSuccessMsg);
+				sassert().assertTrue(registrationSuccessMsg.toLowerCase().contains(thankUMsg), 
+						"Regestration Success, validation failed Expected to have in message: " + thankUMsg +" but Actual message is: " + registrationSuccessMsg);
 			}
 			if (proprties.contains(existingUser)) {
 				// take any user as template
-				LinkedHashMap<String, Object> userdetails = (LinkedHashMap<String, Object>) users.entrySet().iterator()
+				LinkedHashMap<String, String> userdetails = (LinkedHashMap<String, String>) users.entrySet().iterator()
 						.next().getValue();
-				email = "fnsh9109@random.com";//(String) userdetails.get(Registration.keys.email);
+				email = userdetails.get(Registration.keys.email);
 				logs.debug("Registration mail: "+email);
-				Registration.fillAndClickRegister(firstName,lastName,email,password,password,addressDetails);
+				Registration.fillAndClickRegister(firstName,lastName,email,"Elmira College",password,password, type, addressDetails);
 				String validationMsg = Registration.getEmailAddressError();
 				sassert().assertTrue(validationMsg.contains(emailValidation), "Mail validation failed, Expected: " + emailValidation +" Actual: " + validationMsg);
 			}
 			if (proprties.contains(emptyData)) {
 				Registration.clickRegisterButton();
+				if(getBrowserName().equals("IE"))
+					Thread.sleep(2000);
 				
 				String validationMsg = Registration.getFirstNameError();
 				sassert().assertTrue(validationMsg.contains(firstNameValidation),
@@ -135,11 +143,27 @@ public class RegistrationBase extends SelTestCase {
 				validationMsg = Registration.getEmailAddressErrorInvalid();
 				sassert().assertTrue(validationMsg.contains(emailValidation),
 						"Mail validation failed Expected: " + emailValidation + " Actual: " + validationMsg);
+				
+				validationMsg = Registration.getSchoolError();
+				sassert().assertTrue(validationMsg.contains(schoolValidation),
+						"Mail validation failed Expected: " + schoolValidation + " Actual: " + validationMsg);
+				
+				validationMsg = Registration.getPasswordError();
+				sassert().assertTrue(validationMsg.contains(passwordValidation),
+						"Mail validation failed Expected: " + passwordValidation + " Actual: " + validationMsg);
+				
+				validationMsg = Registration.getConfirmPasswordError();
+				sassert().assertTrue(validationMsg.contains(passwordConfValidation),
+						"Mail validation failed Expected: " + passwordConfValidation + " Actual: " + validationMsg);
+				
+				validationMsg = Registration.getTermsError();
+				sassert().assertTrue(validationMsg.contains(termsValidation),
+						"Mail validation failed Expected: " + termsValidation + " Actual: " + validationMsg);
 
 			}
 			if (proprties.contains(invalidUserID)) {
 				email = "invalid@valid";
-				Registration.fillAndClickRegister(firstName,lastName,email,password,password,addressDetails);
+				Registration.fillAndClickRegister(firstName,lastName,email,"Elmira College",password,password,type, addressDetails);
 				
 				String validationMsg = Registration.getEmailAddressErrorInvalid();
 				sassert().assertTrue(validationMsg.contains(emailValidation),

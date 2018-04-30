@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.FileUtils;
 import org.testng.util.Strings;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -74,6 +77,21 @@ public class TestUtilities extends SelTestCase {
 
 				ReportUtil.startTesting(reportDirectory + "//index.html", ReportUtil.now(SelTestCase.time_date_format),
 						SelTestCase.getCONFIG().getProperty("testEnvironment"));
+
+				Path PathObj = Paths.get(EnvironmentFiles.getTemplateDir());
+
+				File index = new File(PathObj.toString());
+				String[] entries = index.list();
+				for (String s : entries) {
+					File currentFile = new File(index.getPath(), s);
+					if (currentFile.toString().endsWith("jpg") || currentFile.toString().endsWith("png")) {
+						try {
+							FileUtils.copyFileToDirectory(currentFile, Paths.get(reportDirectory).toFile());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 
 				runReportSetup = false;
 			}
