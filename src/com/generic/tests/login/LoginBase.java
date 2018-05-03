@@ -62,10 +62,10 @@ public class LoginBase extends SelTestCase {
 				this.getClass().getCanonicalName(), desc, proprties.replace("\n", "<br>- ")));
 
 		String caseMail = "";
-		LinkedHashMap<String, Object> userdetails = null;
+		LinkedHashMap<String, String> userdetails = null;
 		if (!email.equals("")) {
-			userdetails = (LinkedHashMap<String, Object>) users.get(email);
-			caseMail = (String) userdetails.get(Registration.keys.email);
+			userdetails = (LinkedHashMap<String, String>) users.get(email);
+			caseMail = getSubMailAccount(userdetails.get(Registration.keys.email));
 			Testlogs.get().debug("Mail will be used is: " + caseMail);
 		}
 
@@ -74,7 +74,7 @@ public class LoginBase extends SelTestCase {
 			if (proprties.equals("Success login")) {
 				Testlogs.get().debug("Login mail is: " + caseMail);
 				Testlogs.get().debug((String) userdetails.get(Registration.keys.password));
-				SignIn.logIn(caseMail, (String) userdetails.get(Registration.keys.password));
+				SignIn.fillLoginFormAndClickSubmit(caseMail, (String) userdetails.get(Registration.keys.password));
 				sassert().assertTrue(SignIn.checkUserAccount(), LoggingMsg.USER_IS_NOT_LOGGED_IN_SUCCESSFULLY);
 			}
 			if (proprties.equals("invalidUserEmail")) {
@@ -120,7 +120,7 @@ public class LoginBase extends SelTestCase {
 				String failureMessage = MessageFormat.format(LoggingMsg.ACTUAL_EXPECTED_ERROR, alertMessage,
 						fieldsValidation);
 				sassert().assertTrue(alertMessage.contains(fieldsValidation), failureMessage);
-			}//OOS-CBK
+			}
 			if (proprties.equals("Forgot password -Invalid Email")) {
 				SignIn.clickForgotPasswordBtn();
 				SignIn.typeForgottenPwdEmail(caseMail);
@@ -130,7 +130,7 @@ public class LoginBase extends SelTestCase {
 				String failureMessage = MessageFormat.format(LoggingMsg.ACTUAL_EXPECTED_ERROR, alertMessage,
 						fieldsValidation);
 				sassert().assertTrue(alertMessage.contains(fieldsValidation), failureMessage);
-			}//OOS-CBK
+			}
 			sassert().assertAll();
 			Common.testPass();
 		} catch (Throwable t) {

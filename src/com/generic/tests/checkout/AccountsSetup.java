@@ -82,11 +82,11 @@ public class AccountsSetup extends SelTestCase {
 				.get(shippingAddress);
 		
 		String Pemail = "";
-		LinkedHashMap<String, Object> userdetails = null; 
+		LinkedHashMap<String, String> userdetails = null; 
 		if (!email.equals(""))
 		{
-			userdetails = (LinkedHashMap<String, Object>) users.get(email);
-			Pemail = (String) userdetails.get(Registration.keys.email);
+			userdetails = (LinkedHashMap<String, String>) users.get(email);
+			Pemail = getSubMailAccount(userdetails.get(Registration.keys.email));
 			Testlogs.get().debug("Mail will be used is: " + Pemail);
 		}
 		
