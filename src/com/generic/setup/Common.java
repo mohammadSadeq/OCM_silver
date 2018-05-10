@@ -349,7 +349,7 @@ public class Common extends SelTestCase {
 		}
 	}
 
-	public static LinkedHashMap<String, Object> readAddresses() {
+	public static LinkedHashMap<String, Object> readAddresses() throws Exception {
 		/*
 		 * output example [ { A1={ firstName=Accept, lastName=Tester, title=MR.,
 		 * adddressLine=49FeatherstoneStreet, city=LONDON, postal=EC1Y8SY,
@@ -391,7 +391,7 @@ public class Common extends SelTestCase {
 		return addresses;
 	}// readAddresses
 
-	public static LinkedHashMap<String, Object> readLocalInventory() {
+	public static LinkedHashMap<String, Object> readLocalInventory() throws Exception {
 		/*
 		 * Output example [ { P1={
 		 * url=/yacceleratorstorefront/en/Categories/Bags%2BBoardbags/Bags/Seizure-
@@ -413,11 +413,12 @@ public class Common extends SelTestCase {
 		int url = 3;
 		int qty = 4;
 		int color = 5;
-		int sizeFamily = 6; 
-		int size = 7;
-		int length = 8;
-		int info = 9;
-		int price = 10; 
+		int fleece = 6;
+		int memory = 7;
+		int size = 8;
+		int bundleProducts = 9; 
+		int desc = 10;
+		int price = 11; 
 		
 
 		for (int row = 1; row < data.length; row++) {
@@ -427,10 +428,11 @@ public class Common extends SelTestCase {
 			product.put((String) data[header][url], data[row][url]);
 			product.put((String) data[header][qty], data[row][qty]);
 			product.put((String) data[header][color], data[row][color]);
-			product.put((String) data[header][sizeFamily], data[row][sizeFamily]);
+			product.put((String) data[header][fleece], data[row][fleece]);
+			product.put((String) data[header][memory], data[row][memory]);
 			product.put((String) data[header][size], data[row][size]);
-			product.put((String) data[header][length], data[row][length]);
-			product.put((String) data[header][info], data[row][info]);
+			product.put((String) data[header][bundleProducts], data[row][bundleProducts]);
+			product.put((String) data[header][desc], data[row][desc]);
 			product.put((String) data[header][price], data[row][price]);
 
 			products.put((String) data[row][name], product);
@@ -439,7 +441,7 @@ public class Common extends SelTestCase {
 		return products;
 	}// readProducts
 
-	public static LinkedHashMap<String, Object> readPaymentcards() {
+	public static LinkedHashMap<String, Object> readPaymentcards() throws Exception {
 		/*
 		 [
 		  {
@@ -488,7 +490,7 @@ public class Common extends SelTestCase {
 		return cards;
 	}// read payments
 
-	public static LinkedHashMap<String, Object> readTestparams(String testSheet, int caseIndex) {
+	public static LinkedHashMap<String, Object> readTestparams(String testSheet, int caseIndex) throws Exception {
 		/*
 		 * [
 			  {
@@ -525,7 +527,7 @@ public class Common extends SelTestCase {
 		return tests;
 	}// read test param
 
-	public static LinkedHashMap<String, Object> readUsers() {
+	public static LinkedHashMap<String, Object> readUsers() throws Exception {
 		/*
 		[
 		  {
@@ -572,7 +574,7 @@ public class Common extends SelTestCase {
 		return users;
 	}//read users
 	
-	public static String[] readRunners() {
+	public static String[] readRunners() throws Exception {
 		ArrayList<String> runners = new ArrayList<String>();
 		
 		dataProviderUtils TDP = dataProviderUtils.getInstance();
@@ -588,7 +590,7 @@ public class Common extends SelTestCase {
 		return runners.toArray(new String[runners.size()]); 
 	}//read runners
 	
-	public static String[] readBrowsers() {
+	public static String[] readBrowsers() throws Exception {
 
 		ArrayList<String> browsers = new ArrayList<String>();
 		

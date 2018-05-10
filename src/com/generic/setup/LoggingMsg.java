@@ -71,7 +71,7 @@ public class LoggingMsg {
 	public static String SELECTED_INDEX = "selected index is {0}";
 	public static String ERROR_VERIFICATION_SEL_MSG = "The {0} is found and has correct error msg";
 	public static String FORMATTED_ERROR_MSG = "<font color='red'>ERROR >>>-->>> </font>: {0}";
-	public static String FINISHED_ACTION_ON_ELEMENTS_MSG = "<font color='blue'>FINISHED</font> doing correct action on elements: {0}";
+	public static String FINISHED_ACTION_ON_ELEMENTS_MSG = "<font color='blue'>FINISHED</font> applied the correct action on elements: {0}";
 	public static String SENDING_MAIL_TO = "sending mail to: {0}";
 	public static String SUCCESSFULLY_SENT_MSG = "message sent successfully...";
 	public static String FAILED_SENDING_MSG = "Fail to send message";

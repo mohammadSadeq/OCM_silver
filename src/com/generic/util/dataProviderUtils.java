@@ -22,11 +22,11 @@ public class dataProviderUtils {
 	}
 
 	// get the data from xls file
-	public Object[][] getData(String testName) {
+	public Object[][] getData(String testName) throws Exception {
 		return getData(testName, 2);
 	}
 
-	public Object[][] getData(String testName, int startingRow) {
+	public Object[][] getData(String testName, int startingRow) throws Exception{
 		/*
 		 * if the sheet is regression then the sheet name should contains the
 		 * "regression" word and in col 2 should have the property runTest (empty not->
@@ -89,6 +89,9 @@ public class dataProviderUtils {
 			}
 		}
 
+		if (dataFinal.length==0)
+			throw new Exception("No Tests cases enabled in Data sheet");
+		
 		return dataFinal;
 	}
 

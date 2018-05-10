@@ -677,6 +677,11 @@ public class SelectorUtil extends SelTestCase {
 	    	LinkedHashMap<String, LinkedHashMap> webelementsInfo = initializeSelectorsAndDoActions(new ArrayList<String>(subStrArr), valuesArr, false);
 	    	
 	    	List <WebElement> items = getDriver().findElements((By) webelementsInfo.get(subStrArr.get(0)).get("by"));
+	    	if (items.size()==0)
+	    		return false;
+	    	
+	    	JavascriptExecutor jse = (JavascriptExecutor)getDriver();
+			jse.executeScript("arguments[0].scrollIntoView(false)", items.get(0)); 
 	    	boolean isDisplayed = true;
     		if (!items.get(0).isDisplayed())
     			isDisplayed = false;
@@ -752,6 +757,9 @@ public class SelectorUtil extends SelTestCase {
 		valuesArr.add("");
 		LinkedHashMap<String, LinkedHashMap> webelementsInfo = initializeSelectorsAndDoActions(new ArrayList<String>(subStrArr), valuesArr, false);
 		List <WebElement> items = getDriver().findElements((By) webelementsInfo.get(subStrArr.get(0)).get("by"));
+		
+		JavascriptExecutor jse1 = (JavascriptExecutor)getDriver();
+		jse1.executeScript("arguments[0].scrollIntoView(false)", items.get(index)); 
 		
 		getCurrentFunctionName(false);
 		return items.get(index);
