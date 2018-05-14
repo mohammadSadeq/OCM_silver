@@ -2,6 +2,7 @@ package com.generic.page;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -41,6 +42,7 @@ public class PDP extends SelTestCase {
 
 	}
 
+	//done -ocm
 	public static String getPDPUrl(String url) {
 		try {
 			getCurrentFunctionName(true);
@@ -68,10 +70,17 @@ public class PDP extends SelTestCase {
 		}
 	}
 
+	// done -ocm
 	public static void addProductsToCart(LinkedHashMap<String, String> productDetails) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			getDriver().get(productDetails.get(keys.url));
+			
+			String PDPURL = PDP.getPDPUrl(productDetails.get(PDP.keys.url));
+			logs.debug("productDetails to be visted: " + Arrays.asList(productDetails));
+			logs.debug("url key " + PDP.keys.url);
+			logs.debug("url key value " + PDPURL);
+			getDriver().get(PDPURL);
+			
 			clickAddToCartBtn();
 			Thread.sleep(1000);
 			getCurrentFunctionName(false);
@@ -107,6 +116,7 @@ public class PDP extends SelTestCase {
 		getCurrentFunctionName(false);
 	}
 
+	// done-ocm
 	private static void clickAddToCartBtn() throws Exception {
 		try {
 			getCurrentFunctionName(true);

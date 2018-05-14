@@ -130,7 +130,7 @@ public class Base_checkout extends SelTestCase {
 					Cart.validateCoupon();
 				}
 			}
-			orderSubtotal = Cart.getOrderSubTotal();
+			orderSubtotal = Cart.getItemSubTotal();
 			Cart.clickCheckout();
 			
 			if (proprties.contains(loggedDuringChcOt)) {

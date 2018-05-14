@@ -53,7 +53,7 @@ public class Base_cart extends SelTestCase {
 
 	@DataProvider(name = "Carts", parallel = true)
 	public static Object[][] loadTestData() throws Exception {
-		// concurrency mentainance on sheet reading
+		// concurrency maintenance on sheet reading
 		getBrowserWait(testObject.getParameter("browserName"));
 		dataProviderUtils TDP = dataProviderUtils.getInstance();
 		Object[][] data = TDP.getData(testDataSheet);
@@ -64,13 +64,13 @@ public class Base_cart extends SelTestCase {
 	@SuppressWarnings("unchecked")
 	@Test(dataProvider = "Carts")
 	public void CartBaseTest(String caseId, String runTest, String desc, String proprties, String products,
-			String email, String promotion, String OrderSubtotal, String PromotionalDiscounts, String OrderTotal,
+			String email, String promotion, String ItemSubtotal, String Discounts, String OrderSubTotal,
 			String ValidationMSG) throws Exception {
 		// Important to add this for logging/reporting
 		Testlogs.set(new SASLogger("cart_" + getBrowserName()));
 		setTestCaseReportName("cart Case");
 		logCaseDetailds(MessageFormat.format(LoggingMsg.CARTDESC, testDataSheet + "." + caseId,
-				this.getClass().getCanonicalName(), desc, proprties.replace("\n", "<br>- "), promotion, OrderTotal));
+				this.getClass().getCanonicalName(), desc, proprties.replace("\n", "<br>- "), promotion, OrderSubTotal));
 		
 		String CaseMail = "";
 		LinkedHashMap<String, Object> userdetails = null; 
@@ -92,10 +92,12 @@ public class Base_cart extends SelTestCase {
 				for (String product : products.split("\n"))
 					prepareCartNotLoggedInUser(product);
 			
-			getDriver().get(PagesURLs.getShoppingCartPage());
+			String cartUrl = Cart.getCartUrl();
+			getDriver().get(cartUrl);
+		
 			//TODO: Cart.updateQuantityValue(browser, lineOrder, qty);
 
-			// flow to support coupon validation
+			//TODO:// flow to support coupon validation
 			if (!"".equals(promotion)) {
 				Cart.applyPromotion(promotion);
 				ReportUtil.takeScreenShot(getDriver());
@@ -105,24 +107,30 @@ public class Base_cart extends SelTestCase {
 							"<font color=#f442cb>coupon messgae is not same:  " + ValidationMSG + "</font>");
 				ReportUtil.takeScreenShot(getDriver());
 			}
+			
+			if (proprties.contains("Verify items")) {
+			String cartItems  = Cart.getNumberOfproducts();
+			sassert().assertEquals(cartItems, products.split("\n").length+"",
+					"Number of items in cart is not correct where expected 1 but found " + cartItems);//static since we are dealing with one product
+			}
 
 			if (proprties.contains("Verify unit Price")) {
 				String ProductUnitPrice = Cart.getProductUnitPrice();
-				String ErrorMsg = "<font color=#f442cb>expected unit price is: "
-						+ productDetails.get(PDP.keys.price) + "actual unit price: " + ProductUnitPrice + "</font>";
+				String ErrorMsg = "<font color=#f442cb>expected unit price is: " + productDetails.get(PDP.keys.price)
+						+ "<br>actual unit price: " + ProductUnitPrice + " </font>";
 				sassert().assertTrue(ProductUnitPrice.trim().contains((productDetails.get(PDP.keys.price)).trim()), ErrorMsg);
 			}//verify unit price 
 			
-			if (proprties.contains("Verify subtotal")) {
+			if (proprties.contains("Verify items subtotal")) {
 				//the case that to get unit price and multiply it by the qty from product details and,
 				//then compare it with product subtotal and with order subtotal since we have just one product
 				
 				double calculatedProductSubtotal = Double.parseDouble( productDetails.get(PDP.keys.qty))
 						* Double.parseDouble(Cart.getProductUnitPrice().replace("$", "").trim());
 				
-				double siteProductSubtotal = Double.parseDouble(Cart.getProductSubtotal().replace("$", "").trim());
-				double siteOrdersubtotal  = Double.parseDouble(Cart.getOrderSubTotal().split(":")[1].replace("$", "").trim());
-				double SheetOrderSubtotal = Double.parseDouble(OrderSubtotal.replace("$", "").trim());
+				double siteProductSubtotal = Double.parseDouble(Cart.getProductItemSubtotal().replace("$", "").trim());
+				double siteOrdersubtotal  = Double.parseDouble(Cart.getItemSubTotal().replace("$", "").trim());
+				double SheetOrderSubtotal = Double.parseDouble(ItemSubtotal.replace("$", "").trim());
 				
 				String subtotalMSG = "<font color=#f442cb>Subtotal from sheet: " + SheetOrderSubtotal +
 						"<br>calculated subtotal: "+ calculatedProductSubtotal+
@@ -136,8 +144,8 @@ public class Base_cart extends SelTestCase {
 			}//verify subtotal
 
 			if (proprties.contains("Verify discount")) {
-				double siteOrderDiscount = Double.parseDouble(Cart.getOrderDiscount().split(":")[1].replace("$", "").replace("-", "").trim());
-				double SheetOrderDiscount = Double.parseDouble(PromotionalDiscounts.replace("$", "").trim());
+				double siteOrderDiscount = Double.parseDouble(Cart.getOrderDiscount().replace("$", "").replace("-", "").trim());
+				double SheetOrderDiscount = Double.parseDouble(Discounts.replace("$", "").replace("-", "").trim());
 
 				String discountMsg = "<font color=#f442cb>siteOrderDiscount: " + siteOrderDiscount
 						+ "<br>SheetOrderDiscount: " + SheetOrderDiscount + "</font>";
@@ -159,9 +167,9 @@ public class Base_cart extends SelTestCase {
 //			}//verify promotional   
 			
 			
-			if (proprties.contains("Verify total")) {
-				double siteOrderTotal = Double.parseDouble(Cart.getOrderTotal().replace("$", "").trim());
-				double SheetOrderTotal = Double.parseDouble(OrderTotal.replace("$", "").trim());
+			if (proprties.contains("Verify order subtotal")) {
+				double siteOrderTotal = Double.parseDouble(Cart.getOrderSubTotal().replace("$", "").trim());
+				double SheetOrderTotal = Double.parseDouble(OrderSubTotal.replace("$", "").trim());
 				
 				String orderTotalMsg = "<font color=#f442cb>siteOrderTotal: " + siteOrderTotal +
 						"<br>SheetorderTotal: "+ SheetOrderTotal+"</font>" ; 
@@ -175,19 +183,19 @@ public class Base_cart extends SelTestCase {
 			//TODO: setup promo
 			if (proprties.contains("remove Promotion")) {
 				Cart.removeCoupon();
-			double siteOrdersubtotal  = Double.parseDouble(Cart.getOrderSubTotal().replace("$", "").trim());
+			double siteOrdersubtotal  = Double.parseDouble(Cart.getItemSubTotal().replace("$", "").trim());
 			logs.debug("Order subtotal: " + siteOrdersubtotal);
-			double siteOrderTotal = Double.parseDouble(Cart.getOrderTotal().replace("$", "").trim());
+			double siteOrderTotal = Double.parseDouble(Cart.getOrderSubTotal().replace("$", "").trim());
 			logs.debug("Order total: " + siteOrderTotal);
 			sassert().assertTrue(siteOrdersubtotal == siteOrderTotal , "FAILED: voucher code is not removed correctly: <br>");
 			ReportUtil.takeScreenShot(getDriver());
 			}//Remove Promotion.
 			
-			if (proprties.contains("click checkout")) {
-				Cart.clickCheckout();
-			} else {
-				Cart.clickContinueShoping();
-			}
+//			if (proprties.contains("click checkout")) {
+//				Cart.clickCheckout();
+//			} else {
+//				Cart.clickContinueShoping();
+//			}
 
 			ReportUtil.takeScreenShot(getDriver());
 			
