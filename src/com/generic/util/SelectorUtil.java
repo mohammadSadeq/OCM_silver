@@ -221,9 +221,10 @@ public class SelectorUtil extends SelTestCase {
 			//TODO fix multiple elements 
 			for (org.jsoup.nodes.Element e : foundElements) {
 					//logs.debug(e.toString());//Debugging purposes
-				
+			//logs.debug("DEBUG POINT ------------->" + e.attr("type") );
 			if (e.tagName().equals("input") && (e.attr("type").equals("number") || e.attr("type").equals("text")
-					|| e.attr("type").equals("password") || e.attr("type").equals(""))) {
+					|| e.attr("type").equals("password") || e.attr("type").equals("") || e.attr("type").equals("tel")
+					|| e.attr("type").equals("email"))) {
 						return "type";
 					} else if (e.tagName().equals("select")) {
 						return "selectByText";

@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.Wait;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.SelTestCase;
+import com.generic.util.ReportUtil;
 import com.generic.util.SelectorUtil;
 
 public class PDP extends SelTestCase {
@@ -74,13 +75,38 @@ public class PDP extends SelTestCase {
 	public static void addProductsToCart(LinkedHashMap<String, String> productDetails) throws Exception {
 		try {
 			getCurrentFunctionName(true);
-			
+
 			String PDPURL = PDP.getPDPUrl(productDetails.get(PDP.keys.url));
 			logs.debug("productDetails to be visted: " + Arrays.asList(productDetails));
 			logs.debug("url key " + PDP.keys.url);
 			logs.debug("url key value " + PDPURL);
 			getDriver().get(PDPURL);
-			
+
+			// Apply color and check of the results reflected to PDP
+			if (!((String) productDetails.get(PDP.keys.color)).equals("")) {
+				logs.debug("selecting color: " + (String) productDetails.get(PDP.keys.color));
+				selectColor((String) productDetails.get(PDP.keys.color));
+			} // variant color
+
+			// Apply size
+			if (!((String) productDetails.get(PDP.keys.size)).equals("")) {
+
+				logs.debug("selecting size: " + (String) productDetails.get(PDP.keys.size));
+				selectSize((String) productDetails.get(PDP.keys.size));
+			} // size check
+
+			// Apply fleece
+			if (!((String) productDetails.get(PDP.keys.fleece)).equals("")) {
+				logs.debug("selecting fleece: " + (String) productDetails.get(PDP.keys.fleece));
+				selectFleece((String) productDetails.get(PDP.keys.fleece));
+			} // fleece check
+
+			// Apply memory
+			if (!((String) productDetails.get(PDP.keys.memory)).equals("")) {
+				logs.debug("selecting memory: " + (String) productDetails.get(PDP.keys.memory));
+				selectMemory((String) productDetails.get(PDP.keys.memory));
+			} // fleece check
+
 			clickAddToCartBtn();
 			Thread.sleep(1000);
 			getCurrentFunctionName(false);
@@ -89,7 +115,7 @@ public class PDP extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
-	}
+	}// add to cart
 
 	// Done-ocm
 	public static String getPrice() throws Exception {
@@ -112,7 +138,7 @@ public class PDP extends SelTestCase {
 	private static void clickcheckoutBtnCartPopup() throws Exception {
 		getCurrentFunctionName(true);
 		// TODO: pull from config
-		getDriver().get("https://dev.christopherandbanks.com/cart");
+		getDriver().get(Cart.getCartUrl());
 		getCurrentFunctionName(false);
 	}
 

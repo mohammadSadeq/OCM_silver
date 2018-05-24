@@ -99,15 +99,15 @@ public class AccountsSetup extends SelTestCase {
 					(String) userdetails.get(Registration.keys.password),
 					(String) userdetails.get(Registration.keys.password),"",  addressDetails);
 
-			getDriver().get(PagesURLs.getPaymentDetailsPage());
-
-			PaymentDetails.clickOnAddBtn();
-
-			LinkedHashMap<String, String> paymentDetails = (LinkedHashMap<String, String>) paymentCards.get(payment);
-
-			PaymentDetails.fillandClickSave(payment, paymentDetails.get(CheckOut.paymentInnformation.keys.number),
-					paymentDetails.get(CheckOut.paymentInnformation.keys.expireMonth),
-					paymentDetails.get(CheckOut.paymentInnformation.keys.expireYear), "");
+//			getDriver().get(PagesURLs.getPaymentDetailsPage());
+//
+//			PaymentDetails.clickOnAddBtn();
+//
+//			LinkedHashMap<String, String> paymentDetails = (LinkedHashMap<String, String>) paymentCards.get(payment);
+//
+//			PaymentDetails.fillandClickSave(payment, paymentDetails.get(CheckOut.paymentInnformation.keys.number),
+//					paymentDetails.get(CheckOut.paymentInnformation.keys.expireMonth),
+//					paymentDetails.get(CheckOut.paymentInnformation.keys.expireYear), "");
 			
 			/*
 			

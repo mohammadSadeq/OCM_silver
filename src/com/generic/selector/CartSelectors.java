@@ -9,6 +9,8 @@ public class CartSelectors
 	public static final String productSubtotal = "css,div.total-section.each-item-section>span.js-item-total";
 	public static final String productSubtotalMobile = "price-holder totals-mobile";
 	public static final String cartTotals = "js-cart-totals";
+	public static final String checkoutBtn = "CONTINUE WITH CHECKOUT";
+	public static final String shippingMethod = "css,select.deliveryMode_select";
 	
 	
 	
@@ -16,7 +18,6 @@ public class CartSelectors
 	public static final String orderItemSubtotal = "order-subtotal";
 	public static final String orderDiscount = "order-discount discount";
 	public static final String orderTotal = "order-value value";
-	public static final String checkoutBtn = "dwfrm_cart_checkoutCart";
 	public static final String totals = "totals-line-items";
 	public static final String couponField = "voucherCode";
 	public static final String applyCouponButton = "css,.voucher-code-btn";

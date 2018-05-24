@@ -25,7 +25,7 @@ import com.generic.util.RandomUtilities;
 import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 
-public class Base_checkout extends SelTestCase {
+public class template extends SelTestCase {
 
 	private static LinkedHashMap<String, Object> addresses = null ;
 	private static  LinkedHashMap<String, Object> invintory = null ;
@@ -57,7 +57,7 @@ public class Base_checkout extends SelTestCase {
 
 	@DataProvider(name = "Orders", parallel = true)
 	public static Object[][] loadTestData() throws Exception {
-		//concurrency maintenance on sheet reading 
+		//concurrency mentainance on sheet reading 
 		getBrowserWait(testObject.getParameter("browserName"));
 		
 		dataProviderUtils TDP = dataProviderUtils.getInstance();
@@ -140,6 +140,11 @@ public class Base_checkout extends SelTestCase {
 			}else {
 				Cart.clickCheckout();
 			}
+			
+//			if (proprties.contains(guestUser)) {
+//				Pemail = RandomUtilities.getRandomEmail();
+//				CheckOut.guestCheckout.fillAndClickGuestCheckout(Pemail);
+//			}
 
 			Thread.sleep(1000);
 			
@@ -154,6 +159,45 @@ public class Base_checkout extends SelTestCase {
 					addressDetails.get(CheckOut.shippingAddress.keys.city),
 					addressDetails.get(CheckOut.shippingAddress.keys.city),
 					addressDetails.get(CheckOut.shippingAddress.keys.zipcode));
+			//CheckOut.shippingMethod.writeMail(Pemail);
+			//OCM-custom
+			
+
+			/*// checkout- shipping address - standard 
+			if ((proprties.contains(CheckOut.shippingAddress.keys.isSavedShipping) && !proprties.contains(freshUser)
+					&& !proprties.contains(guestUser) ) || proprties.contains(loggedInUser) || proprties.contains(loggedDuringChcOt)
+					&& !proprties.contains(freshUser) ){
+				CheckOut.shippingAddress.fillAndClickNext(true);//pick first saved option 
+				Thread.sleep(1000);
+			} else {
+				
+				if (!proprties.contains(guestUser)) 
+					CheckOut.shippingAddress.addAddress(); //this button is not exist in guest checkout
+				
+				// in case guest the save shipping check-box is not exist
+				CheckOut.shippingAddress.fillAndClickNext(
+						addressDetails.get(CheckOut.shippingAddress.keys.countery),
+						addressDetails.get(CheckOut.shippingAddress.keys.firstName),
+						addressDetails.get(CheckOut.shippingAddress.keys.lastName),
+						addressDetails.get(CheckOut.shippingAddress.keys.adddressLine),
+						addressDetails.get(CheckOut.shippingAddress.keys.city),
+						addressDetails.get(CheckOut.shippingAddress.keys.city),
+						addressDetails.get(CheckOut.shippingAddress.keys.zipcode),
+						addressDetails.get(CheckOut.shippingAddress.keys.phone));
+				CheckOut.shippingMethod.writeMail(Pemail);
+			}
+			ReportUtil.takeScreenShot(getDriver());
+			
+			// Shipping method
+			CheckOut.shippingMethod.fillAndclickNext(shippingMethod);
+			ReportUtil.takeScreenShot(getDriver());
+			
+			
+			//click on continue to payment button 
+			CheckOut.shippingMethod.clickContinueToPayement();
+			ReportUtil.takeScreenShot(getDriver());// shipping method standard*/
+			
+			
 			
 			LinkedHashMap<String, String> paymentDetails = (LinkedHashMap<String, String>) paymentCards
 					.get(payment);
@@ -174,11 +218,64 @@ public class Base_checkout extends SelTestCase {
 					 billAddressDetails.get(CheckOut.shippingAddress.keys.zipcode),
 					 billAddressDetails.get(CheckOut.shippingAddress.keys.phone));
 			
+			/*// checkout- payment- standard payment flow
+			if ((proprties.contains(CheckOut.paymentInnformation.keys.isSavedPayement) && !proprties.contains(freshUser)
+					&& !proprties.contains(guestUser))|| proprties.contains(loggedInUser)|| proprties.contains(loggedDuringChcOt)) {
+				ReportUtil.takeScreenShot(getDriver());
+				CheckOut.paymentInnformation.fillAndclickNext(true);
+				ReportUtil.takeScreenShot(getDriver());
+			} else {
+
+				// do not save address if scenario is guest user
+				boolean saveBilling = !proprties.contains(guestUser);
+				LinkedHashMap<String, Object> paymentDetails = (LinkedHashMap<String, Object>) paymentCards
+						.get(payment);
+				LinkedHashMap<String, Object> billAddressDetails = (LinkedHashMap<String, Object>) addresses
+						.get(billingAddress);
+
 			
-			Thread.sleep(1000);
+				CheckOut.paymentInnformation.fill(payment, "Tester",
+						(String) paymentDetails.get(CheckOut.paymentInnformation.keys.number),
+						(String) paymentDetails.get(CheckOut.paymentInnformation.keys.expireMonth),
+						(String) paymentDetails.get(CheckOut.paymentInnformation.keys.expireYear),
+						(String) paymentDetails.get(CheckOut.paymentInnformation.keys.CVCC));
+			}//payment standard*/
+			
 			//Waiting payment to be processed
 			if(getBrowserName().equals("firefox"))
-			Thread.sleep(2000);
+			Thread.sleep(1000);
+			
+			
+			/*//go to order review
+			CheckOut.paymentInnformation.clickContinueToOrderReview();
+			ReportUtil.takeScreenShot(getDriver());*/
+			
+			//TODO:
+			/*String orderReviewSubtotal  = CheckOut.reviewInformation.getSubtotal();
+			sassert().assertEquals(orderReviewSubtotal, orderSubtotal ,
+					"Subtotal in cart "+orderSubtotal+" is not matching chekout review pages: " + orderReviewSubtotal);*/
+			
+			/*CheckOut.reviewInformation.clickPlaceOrderBtn();
+			ReportUtil.takeScreenShot(getDriver());*/
+			
+			
+			
+			// Validate the order sub total in order review section
+			/*String orderconfirmationsubtotal = CheckOut.orderConfirmation.getSubTotal();
+			sassert().assertEquals(orderconfirmationsubtotal, orderSubtotal,
+					"Subtotal in cart "+orderSubtotal+" is not matching chekout order confirmation pages: " + orderconfirmationsubtotal);
+			orderId = CheckOut.orderConfirmation.getOrderId();*/
+
+			/*
+			//TODO: lower
+			orderTotal = CheckOut.orderConfirmation.getOrderTotal();
+			orderShipping = CheckOut.orderConfirmation.getShippingCost();
+
+			if (proprties.contains(guestUser) && proprties.contains("register-guest")) {
+				CheckOut.guestCheckout.fillPreRegFormAndClickRegBtn("1234567", false);
+			}
+			 */
+			//Testlogs.get().debug(MessageFormat.format(LoggingMsg.CHECKOUT_RESULT , Pemail,orderId,orderSubtotal));
 			
 			ReportUtil.takeScreenShot(getDriver());
 			String billingAddressDetails = CheckOut.orderConfirmation.getBillingAddrerss();
