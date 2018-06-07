@@ -18,6 +18,7 @@ public class SheetVariables {
 	//SheetNames
     public static final String loginSheet = "LoginRegression";
     public static final String checkoutSheet = "CheckOutRegression";
+    public static final String OrderHistory = "OrderHistoryRegression";
     public static final String plpSheet = "PLPRegression";
     public static final String personalDetailsSheet = "PersonalDetailsRegression";
     public static final String orderHistorySheet = "OrderHistoryRegression";
@@ -38,10 +39,12 @@ public class SheetVariables {
 	public static final String SearchSheet = "SearchRegression";
 	public static final String MailSignupRegressionSheet = "MailSignupRegression";
 	public static final String QuickViewRegressionSheet = "QuickViewRegression";
-	public static final String VisualTestingHPRegressionsheet = "VisualTestingHPRegression";
+	public static final String VisualTestingHPRegressionsheet = "HomePageRegression";
 	public static final String VisualTestingCLPRegressionsheet = "VisualTestingCLPRegression";
 	public static final String RunnersRegressionSheet = "SetupRunners";
 	public static final String BrowsersListingSheet = "SetupBrowsers";
+	public static final String FavoriteSheet = "FavoriteRegression";
+	public static final String MiniCartSheet = "MiniCartRegression";
 	
     //Test Case id
     public static final String registrationTestCaseId = "Registration";
@@ -57,6 +60,9 @@ public class SheetVariables {
 	public static final String QuickViewTestCaseId = "QuickView";
 	public static final String VisualTestingHPTestCaseId = "VisualTestingHP case";
 	public static final String VisualTestingCLPTestCaseId = "VisualTestingCLP case";
+	public static final String FavoriteSheetTestCaseId = "Favorite Case";
+
+
 
 
 }

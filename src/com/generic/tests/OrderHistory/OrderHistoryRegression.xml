@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="OrderHistory Regression" parallel="tests" thread-count="10" data-provider-thread-count="2">
+
+	<test name="OrderHistory chrome">
+		<parameter name="browserName" value="chrome"></parameter>
+		<classes>
+			<class name="com.generic.tests.OrderHistory.Base_OrderHistory" />
+		</classes>
+	</test><!-- Test -->
+	<test name="OrderHistory firefox">
+		<parameter name="browserName" value="firefox"></parameter>
+		<classes>
+			<class name="com.generic.tests.OrderHistory.Base_OrderHistory" />
+		</classes>
+	</test><!-- Test -->
+	<test name="OrderHistory mobile_Nexus 5">
+		<parameter name="browserName" value="mobile_Nexus 5"></parameter>
+		<classes>
+			<class name="com.generic.tests.OrderHistory.Base_OrderHistory" />
+		</classes>
+	</test><!-- Test -->
+	
+
+</suite> <!-- Suite -->

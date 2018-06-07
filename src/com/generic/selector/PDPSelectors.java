@@ -19,6 +19,7 @@ public class PDPSelectors {
 	public static String closSocialShareBtn = "st-close";
 	public static String PDPnavs = "css,div.nav-tabs-container>ul>li";
 	public static String PDPnavs_mobile = "css,div.tab-content>div>div>button";
+	public static String favButton = "addToWishlist";
 
 	
 	

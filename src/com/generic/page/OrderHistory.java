@@ -3,9 +3,12 @@ package com.generic.page;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import com.generic.selector.OrderHistorySelector;
+import com.generic.setup.ExceptionMsg;
 import com.generic.setup.LoggingMsg;
+import com.generic.setup.PagesURLs;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;
 
@@ -141,4 +144,70 @@ public class OrderHistory extends SelTestCase {
 		getCurrentFunctionName(false);
     	return SelectorUtil.textValue.get();
     }
+
+	//done-ocm
+    public static void goToOrderHistoryPage(String OrderId) throws Exception {
+		getCurrentFunctionName(true);
+		String url = PagesURLs.getHomePage()+PagesURLs.getOrderHistoryPage()+OrderId ; 
+		logs.debug("getting order history page: " +url );
+		getDriver().get(url);
+		getCurrentFunctionName(false);
+		
+	}
+
+	// done-ocm
+	public static String getBillingAddress() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String BA =  CheckOut.orderConfirmation.getBillingAddrerss();
+			getCurrentFunctionName(false);
+			return BA;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
+	public static String getPayment() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String BA =  CheckOut.orderConfirmation.getBillingAddrerss();
+			getCurrentFunctionName(false);
+			return BA;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
+	public static String getOrderItemTotal() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String BA =  CheckOut.orderConfirmation.getItemsSubTotal();
+			getCurrentFunctionName(false);
+			return BA;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
+
+	// done-ocm
+	public static String getOrderTotal() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			String BA =  CheckOut.orderConfirmation.getOrderTotal();
+			getCurrentFunctionName(false);
+			return BA;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}
 }

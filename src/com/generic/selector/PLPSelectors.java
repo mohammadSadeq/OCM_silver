@@ -10,6 +10,8 @@ public class PLPSelectors {
 	public static final String sortPLTHMobile = "Price: Low to High";
 	public static final String productsPrices = "actual-price";
 	public static final String productNmber = "pagination-bar-results";
+	public static final String SearchBox = "js-site-search-input";
+	public static final String randomProduct = "product__list--name";
 	
 	
 	

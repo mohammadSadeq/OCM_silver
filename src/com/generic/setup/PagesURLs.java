@@ -22,6 +22,7 @@ public class PagesURLs extends SelTestCase {
 	public static String errorPage = "errorPage";
 	public static String PLP = "PLP";
 	public static String CLP = "CLP";
+	public static String fav = "fav";
 	
 	public static String getDriversPath(String driverName) {
 		try {
@@ -280,6 +281,20 @@ public class PagesURLs extends SelTestCase {
 			getCONFIG().setProperty(CLP,newCLP);
 			} catch(Throwable t) {
 				throw new NoSuchElementException(MessageFormat.format(LoggingMsg.PROPERTY_ERROR_MSG, CLP));
+			}
+	}
+	public static String getfav() {
+		try {
+			return getCONFIG().getProperty(fav);
+			} catch(Throwable t) {
+				throw new NoSuchElementException(MessageFormat.format(LoggingMsg.PROPERTY_ERROR_MSG, fav));
+			}
+	}
+	public static void setFav(String newfav) {
+		try {
+			getCONFIG().setProperty(fav,newfav);
+			} catch(Throwable t) {
+				throw new NoSuchElementException(MessageFormat.format(LoggingMsg.PROPERTY_ERROR_MSG, fav));
 			}
 	}
 

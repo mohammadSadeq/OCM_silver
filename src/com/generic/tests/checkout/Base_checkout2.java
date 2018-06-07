@@ -25,7 +25,7 @@ import com.generic.util.RandomUtilities;
 import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 
-public class Base_checkout extends SelTestCase {
+public class Base_checkout2 extends SelTestCase {
 
 	private static LinkedHashMap<String, Object> addresses = null ;
 	private static  LinkedHashMap<String, Object> invintory = null ;
@@ -37,8 +37,6 @@ public class Base_checkout extends SelTestCase {
 	public static final String freshUser = "fresh";
 	public static final String loggedInUser = "loggedin";
 	public static final String loggedDuringChcOt = "logging During Checkout";
-	
-	public static boolean external = false; //change this value will pass through logging
 
 	// used sheet in test
 	public static final String testDataSheet = SheetVariables.checkoutSheet;
@@ -73,15 +71,18 @@ public class Base_checkout extends SelTestCase {
 	public void checkOutBaseTest(String caseId, String runTest, String desc, String proprties, String products,
 			String shippingMethod, String payment, String shippingAddress, String billingAddress,
 			String coupon, String email) throws Exception {
+		//Important to add this for logging/reporting 
+		Testlogs.set(new SASLogger("checkout_"+getBrowserName()));
+		setTestCaseReportName("Checkout Case");
+		logCaseDetailds(MessageFormat.format(LoggingMsg.CHECKOUTDESC, testDataSheet + "." + caseId,
+				this.getClass().getCanonicalName(), desc, proprties.replace("\n", "<br>- "), payment, shippingMethod));
 		
-		if (!external) { //this logic to avoid passing this block in case you call it from other class
-			// Important to add this for logging/reporting
-			Testlogs.set(new SASLogger("checkout_" + getBrowserName()));
-			setTestCaseReportName("Checkout Case");
-			logCaseDetailds(MessageFormat.format(LoggingMsg.CHECKOUTDESC, testDataSheet + "." + caseId,
-					this.getClass().getCanonicalName(), desc, proprties.replace("\n", "<br>- "), payment, shippingMethod));
-		}//if not external
-		
+		chekoutTestBody(proprties, products, shippingMethod, payment, shippingAddress, billingAddress, coupon, email);
+	}// test
+
+	@SuppressWarnings("unchecked")
+	public void chekoutTestBody(String proprties, String products, String shippingMethod, String payment,
+			String shippingAddress, String billingAddress, String coupon, String email ) {
 		LinkedHashMap<String, String> addressDetails = (LinkedHashMap<String, String>) addresses.get(shippingAddress);
 		
 		String Pemail;
@@ -185,36 +186,34 @@ public class Base_checkout extends SelTestCase {
 			if(getBrowserName().equals("firefox"))
 			Thread.sleep(2000);
 			
-			if (!external) { //this logic to avoid passing this block in case you call it from other class
-				ReportUtil.takeScreenShot(getDriver());
-				String billingAddressDetails = CheckOut.orderConfirmation.getBillingAddrerss();
-				sassert().assertTrue(
-						billingAddressDetails.toLowerCase().contains(addressDetails.get(CheckOut.shippingAddress.keys.adddressLine).trim().toLowerCase()),
-						"Error in billing address from order confirmation page.<br> the actual address: "
-								+ billingAddressDetails + "<br>and expected: "
-								+ addressDetails.get(CheckOut.shippingAddress.keys.adddressLine));
-				
-				
-				String shippinhAddressDetails = CheckOut.orderConfirmation.getShippingAddrerss();
-				sassert().assertTrue(
-						shippinhAddressDetails.toLowerCase().contains(addressDetails.get(CheckOut.shippingAddress.keys.adddressLine).trim().toLowerCase()),
-						"Error in shipping address from order confirmation page.<br> the actual address: "
-								+ shippinhAddressDetails + "<br>and expected: "
-								+ addressDetails.get(CheckOut.shippingAddress.keys.adddressLine));
-				
-				orderId= CheckOut.orderConfirmation.getOrderId();
-				orderTotal = CheckOut.orderConfirmation.getOrderTotal();
-				String orderSubtotalconfirmationPage = CheckOut.orderConfirmation.getItemsSubTotal();
-				
-				sassert().assertTrue(orderSubtotal.contains(orderSubtotalconfirmationPage),
-						"order items subtotal is not correct");
-				
-				Testlogs.get().debug(MessageFormat.format(LoggingMsg.CHECKOUT_RESULT , Pemail,orderId,orderSubtotal));
-				
-				
-				sassert().assertAll();
-				Common.testPass();
-			}//if not external
+			ReportUtil.takeScreenShot(getDriver());
+			String billingAddressDetails = CheckOut.orderConfirmation.getBillingAddrerss();
+			sassert().assertTrue(
+					billingAddressDetails.toLowerCase().contains(addressDetails.get(CheckOut.shippingAddress.keys.adddressLine).trim().toLowerCase()),
+					"Error in billing address from order confirmation page.<br> the actual address: "
+							+ billingAddressDetails + "<br>and expected: "
+							+ addressDetails.get(CheckOut.shippingAddress.keys.adddressLine));
+			
+			
+			String shippinhAddressDetails = CheckOut.orderConfirmation.getShippingAddrerss();
+			sassert().assertTrue(
+					shippinhAddressDetails.toLowerCase().contains(addressDetails.get(CheckOut.shippingAddress.keys.adddressLine).trim().toLowerCase()),
+					"Error in shipping address from order confirmation page.<br> the actual address: "
+							+ shippinhAddressDetails + "<br>and expected: "
+							+ addressDetails.get(CheckOut.shippingAddress.keys.adddressLine));
+			
+			orderId= CheckOut.orderConfirmation.getOrderId();
+			orderTotal = CheckOut.orderConfirmation.getOrderTotal();
+			String orderSubtotalconfirmationPage = CheckOut.orderConfirmation.getItemsSubTotal();
+			
+			sassert().assertTrue(orderSubtotal.contains(orderSubtotalconfirmationPage),
+					"order items subtotal is not correct");
+			
+			Testlogs.get().debug(MessageFormat.format(LoggingMsg.CHECKOUT_RESULT , Pemail,orderId,orderSubtotal));
+			
+			
+			sassert().assertAll();
+			Common.testPass();
 		} catch (Throwable t) {
 			setTestCaseDescription(getTestCaseDescription());
 			Testlogs.get().debug(MessageFormat.format(LoggingMsg.DEBUGGING_TEXT, t.getMessage()));
@@ -224,5 +223,5 @@ public class Base_checkout extends SelTestCase {
 			ReportUtil.takeScreenShot(getDriver());
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
-	}// test
+	}
 }// class

@@ -1694,11 +1694,11 @@ public class CheckOut extends SelTestCase {
 				getCurrentFunctionName(true);
 				List<String> subStrArr = new ArrayList<String>();
 				subStrArr.add(CheckOutSelectors.orderdetails);
-				WebElement details = SelectorUtil.getNthElement(subStrArr, 1);
+				WebElement details = SelectorUtil.getNthElement(subStrArr, 0);
 				String orderId = details.findElements(By.cssSelector("ul>li")).get(0).getText();
 				logs.debug(orderId);
 				getCurrentFunctionName(false);
-				return orderId.split(" ")[1];
+				return orderId.split(" ")[1].replace("#", "");
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
 				}.getClass().getEnclosingMethod().getName()));

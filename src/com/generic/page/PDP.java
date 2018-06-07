@@ -43,7 +43,7 @@ public class PDP extends SelTestCase {
 
 	}
 
-	//done -ocm
+	// done -ocm
 	public static String getPDPUrl(String url) {
 		try {
 			getCurrentFunctionName(true);
@@ -664,6 +664,40 @@ public class PDP extends SelTestCase {
 			throw e;
 		}
 
+	}
+
+	// done-OCM
+	public static String getRandomProduct(String KeyWord) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			PLP.searchProduct(KeyWord);
+			PLP.pickRandomPDP();
+			String ProductTitle = getTitle();
+			getCurrentFunctionName(false);
+			return ProductTitle;
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
+	}
+
+	// done-OCM
+	public static void addToFavorite() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			List<String> valuesArr = new ArrayList<String>();
+			subStrArr.add(PDPSelectors.favButton);
+			valuesArr.add("");
+			SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
 	}
 
 }

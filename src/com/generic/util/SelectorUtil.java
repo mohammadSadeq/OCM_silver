@@ -245,7 +245,8 @@ public class SelectorUtil extends SelTestCase {
 						return "click";
 					}
 					else if (e.tagName().equals("p")||e.tagName().equals("tr")||
-							e.tagName().equals("body") || e.tagName().equals("td") || e.tagName().contains("h")||e.tagName().contains("ul")) {
+					e.tagName().equals("body") || e.tagName().equals("td") || e.tagName().contains("h")
+					|| e.tagName().contains("ul") || e.tagName().contains("dd")) {
 						return "gettext";
 					}else if (e.tagName().equals("div") || e.tagName().equals("span"))
 					{
@@ -781,6 +782,13 @@ public class SelectorUtil extends SelTestCase {
 
 	    @SuppressWarnings("rawtypes")
 		public static LinkedHashMap<String, LinkedHashMap> initializeSelectorsAndDoActions(List<String> subStrArr, List<String> valuesArr ) throws Exception {
+	    	return initializeSelectorsAndDoActions(subStrArr,valuesArr , true);
+	    }
+	    
+	    @SuppressWarnings("rawtypes")
+		public static LinkedHashMap<String, LinkedHashMap> initializeSelectorsAndDoActions(List<String> subStrArr ) throws Exception {
+	    	List<String> valuesArr = new ArrayList<String>();
+	    	valuesArr.add("");
 	    	return initializeSelectorsAndDoActions(subStrArr,valuesArr , true);
 	    }
 	    
