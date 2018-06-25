@@ -201,7 +201,7 @@ public class Base_cart extends SelTestCase {
 			
 			if (proprties.contains("Loggedin")) {
 				// navigate back to cart
-				getDriver().get("http://stage.com/oshstorefront/cart");
+				getDriver().get(cartUrl);
 				Cart.removeAllItemsFromCart();
 			}
 			
@@ -225,14 +225,20 @@ public class Base_cart extends SelTestCase {
 	public void prepareCartNotLoggedInUser(String product) throws Exception {
 		logs.debug(MessageFormat.format(LoggingMsg.ADDING_PRODUCT, product));
 		productDetails = (LinkedHashMap<String, String>) invintory.get(product);
-		PDP.addProductsToCart(productDetails);
+		if (product.contains("auto") || product.equals(""))
+			PDP.addRandomProductsToCart();
+		else 
+			PDP.addProductsToCart(productDetails);
+		
 	}
 
 	public void prepareCartLoggedInUser(LinkedHashMap<String, Object> userdetails, String product) throws Exception {
 		logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, userdetails));
 		logs.debug((String) userdetails.get(Registration.keys.email));
 		logs.debug((String) userdetails.get(Registration.keys.password));
-		SignIn.logIn((String) userdetails.get(Registration.keys.email),
+		String caseMail = (String) userdetails.get(Registration.keys.email);
+		caseMail = getSubMailAccount(caseMail);
+		SignIn.logIn(caseMail,
 				(String) userdetails.get(Registration.keys.password));
 
 		prepareCartNotLoggedInUser(product);

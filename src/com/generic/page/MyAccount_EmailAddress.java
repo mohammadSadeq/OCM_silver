@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.generic.selector.MyAccount_EmailAddressSelectors;
-import com.generic.selector.PersonalDetailsSelectors;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.LoggingMsg;
 import com.generic.util.SelectorUtil;

@@ -1,82 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?><suite data-provider-thread-count="2" name="Full Regression" parallel="tests" thread-count="5">
-<test name="checkout Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-			<class name="com.generic.tests.checkout.Base_checkout"/>
-		</classes>
-	</test><test name="checkout ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-			<class name="com.generic.tests.checkout.Base_checkout"/>
-		</classes>
-	</test><test name="addressBook Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-			<class name="com.generic.tests.MyAccount_addressBook.AddressBookValidationBase"/>
-		</classes>
-	</test><test name="addressBook ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-			<class name="com.generic.tests.MyAccount_addressBook.AddressBookValidationBase"/>
-		</classes>
-	</test><test name="payment details regression Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-		   	<class name="com.generic.tests.MyAccount_Payment.PaymentDetailsValidationBase"/>
-		</classes>
-	</test><test name="payment details regression ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-		   	<class name="com.generic.tests.MyAccount_Payment.PaymentDetailsValidationBase"/>
-		</classes>
-	</test><test name="PDP Tests _ Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-			<class name="com.generic.tests.PDP.Base_PDP"/>
-		</classes>
-	</test><test name="PDP Tests _ ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-			<class name="com.generic.tests.PDP.Base_PDP"/>
-		</classes>
-	</test><test name="PLP validation Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-              <class name="com.generic.tests.Search_PLP.PLP_Base"/>
-		</classes>
-	</test><test name="PLP validation ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-              <class name="com.generic.tests.Search_PLP.PLP_Base"/>
-		</classes>
-	</test><test name="Registration Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-			<class name="com.generic.tests.Registration.RegistrationBase"/>
-		</classes>
-	</test><test name="Registration ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-			<class name="com.generic.tests.Registration.RegistrationBase"/>
-		</classes>
-	</test><test name="Login Firefox ">
-		<parameter name="browserName" value="Firefox"/>
-		<classes>
-			<class name="com.generic.tests.login.LoginBase"/>
-		</classes>
-	</test><test name="Login ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
-		<classes>
-			<class name="com.generic.tests.login.LoginBase"/>
-		</classes>
-	</test><test name="cart Tests _ Firefox ">
-		<parameter name="browserName" value="Firefox"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<suite data-provider-thread-count="3" name="Full Regression" parallel="tests" thread-count="3">
+<test name="addressBook Chrome ">
+	<parameter name="browserName" value="Chrome"/>
+	<classes>
+		<class name="com.generic.tests.MyAccount_addressBook.AddressBookValidationBase"/>
+	</classes>
+</test><test name="cart Tests Chrome ">
+		<parameter name="browserName" value="Chrome"/>
 		<classes>
 			<class name="com.generic.tests.Cart.Base_cart"/>
 		</classes>
-	</test><test name="cart Tests _ ChromeG ">
-		<parameter name="browserName" value="ChromeG"/>
+	</test><test name="checkout Chrome ">
+		<parameter name="browserName" value="Chrome"/>
 		<classes>
-			<class name="com.generic.tests.Cart.Base_cart"/>
+			<class name="com.generic.tests.checkout.Base_checkout"/>
+		</classes>
+	</test><test name="fav Tests _ Chrome ">
+		<parameter name="browserName" value="Chrome"/>
+		<classes>
+			<class name="com.generic.tests.Favorite.Base_Favorite"/>
+		</classes>
+	</test><test name="Login Regression Chrome ">
+		<parameter name="browserName" value="Chrome"/>
+		<classes>
+			<class name="com.generic.tests.login.LoginBase"/>
+		</classes>
+	</test><test name="PDP Tests _ Chrome ">
+		<parameter name="browserName" value="Chrome"/>
+		<classes>
+			<class name="com.generic.tests.PDP.Base_PDP"/>
+		</classes>
+	</test><test name="PLP validation Chrome ">
+		<parameter name="browserName" value="Chrome"/>
+		<classes>
+              <class name="com.generic.tests.Search_PLP.PLP_Base"/>
+		</classes>
+	</test><test name="Registration Chrome ">
+		<parameter name="browserName" value="Chrome"/>
+		<classes>
+			<class name="com.generic.tests.Registration.RegistrationBase"/>
+		</classes>
+	</test><test name="RestPassword Chrome ">
+		<parameter name="browserName" value="Chrome"/>
+		<classes>
+			<class name="com.generic.tests.MyAccount_Password.ChangePassword_base"/>
 		</classes>
 	</test></suite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login Regression" parallel="tests" thread-count="10" data-provider-thread-count="3">
+	<test name="Login Regression iPhone 6 Plus">
+		<parameter name="browserName" value="mobile_iPhone 6 Plus"></parameter>
+		<classes>
+			<class name="com.generic.tests.login.LoginBase" />
+		</classes>
+	</test><!-- Test -->
+		
+
+</suite> <!-- Suite -->

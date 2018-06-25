@@ -12,20 +12,14 @@ import java.util.LinkedHashMap;
 
 import com.generic.page.PDP;
 import com.generic.page.Registration;
-import com.generic.page.Cart;
-import com.generic.page.CheckOut;
 import com.generic.page.MiniCart;
-import com.generic.page.OrderHistory;
 import com.generic.page.SignIn;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.PagesURLs;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
-import com.generic.tests.checkout.Base_checkout;
-import com.generic.util.TestUtilities;
 import com.generic.util.dataProviderUtils;
-import com.generic.util.RandomUtilities;
 import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 

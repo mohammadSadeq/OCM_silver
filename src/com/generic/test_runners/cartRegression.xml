@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Cart Suite" parallel="tests" thread-count="10" data-provider-thread-count="3">
-	<test name="cart Tests _ ChromeG">
+<suite name="cart regression" parallel="tests" thread-count="10" data-provider-thread-count="3">
+<test name="cart Tests _chrome">
 		<parameter name="browserName" value="chrome"></parameter>
+		<classes>
+			<class name="com.generic.tests.Cart.Base_cart" />
+		</classes>
+	</test><!-- Test -->
+	<test name="cart Tests _firefox">
+		<parameter name="browserName" value="firefox"></parameter>
+		<classes>
+			<class name="com.generic.tests.Cart.Base_cart" />
+		</classes>
+	</test><!-- Test -->
+	<test name="cart Tests _ Nexus 5">
+		<parameter name="browserName" value="mobile_Nexus 5"></parameter>
 		<classes>
 			<class name="com.generic.tests.Cart.Base_cart" />
 		</classes>

@@ -3,7 +3,6 @@ package com.generic.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.generic.selector.CartSelectors;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;

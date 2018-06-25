@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="login Regression IE" parallel="tests" thread-count="1" data-provider-thread-count="1">
+	<test name="Login IE">
+		<parameter name="browserName" value="IE"></parameter>
+		<classes>
+			<class name="com.generic.tests.login.LoginBase" />
+		</classes>
+	</test><!-- Test -->
+
+</suite> <!-- Suite -->

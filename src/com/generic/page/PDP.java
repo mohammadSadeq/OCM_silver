@@ -6,11 +6,9 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,11 +16,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.SelTestCase;
-import com.generic.util.ReportUtil;
 import com.generic.util.SelectorUtil;
 
 public class PDP extends SelTestCase {
@@ -698,6 +694,102 @@ public class PDP extends SelTestCase {
 			}.getClass().getEnclosingMethod().getName()));
 			throw e;
 		}
+	}
+
+	// done -ocm
+	public static void addRandomProductsToCart() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			// random search in case of multiple calls
+			String[] Items = getCONFIG().getProperty("RandomItems").split(",");
+			Random random = new Random(System.currentTimeMillis());
+			int range = Items.length - 1;
+			if (range > 0)
+				navigateToRandomPDP(Items[random.nextInt(range)]);
+			else
+				navigateToRandomPDP(Items[0]);
+			Thread.sleep(3000);
+			if (getBrowserName().equals("IE"))
+				Thread.sleep(2000);
+			selectAllVariants();
+			Thread.sleep(3000);
+			if (getBrowserName().equals("IE"))
+				Thread.sleep(2000);
+			clickAddToCartBtn();
+			if (getBrowserName().equals("IE"))
+				Thread.sleep(2000);
+			Thread.sleep(1000);
+
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+	}// add to cart randomly
+
+	public static void navigateToRandomPDP(String keyword) throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			PLP.searchProduct(keyword);
+			Thread.sleep(5000);
+			if (getBrowserName().equals("IE"))
+				Thread.sleep(2000);
+			PLP.pickRandomPDP();
+			Thread.sleep(3000);
+			if (getBrowserName().equals("IE"))
+				Thread.sleep(2000);
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
+	}
+
+	public static void selectAllVariants() throws Exception {
+		try {
+			getCurrentFunctionName(true);
+			List<String> subStrArr = new ArrayList<String>();
+			subStrArr.add(PDPSelectors.optionHolder);
+			if (SelectorUtil.isNotDisplayed(subStrArr)) {
+				logs.debug("No variants to select from. <br>\n");
+				return;
+			}
+			List<WebElement> optionHolders = SelectorUtil.getAllElements(subStrArr);
+			int holdersCount = optionHolders.size();
+			boolean noVariants = true;
+			String OptionTitle = "";
+			for (int i = 0; i < holdersCount; i++) {
+				if (!SelectorUtil.isDisplayed(subStrArr, i)) {
+					continue;
+				}
+				WebElement holder = SelectorUtil.getNthElement(subStrArr, i);
+				OptionTitle = holder.findElements(By.cssSelector(PDPSelectors.optionHolderTitle)).get(0).getText();
+				if(OptionTitle.equals("")) {
+					OptionTitle = holder.findElements(By.cssSelector(PDPSelectors.optionHolderTitle)).get(1).getText();
+				}
+				WebElement variant = holder.findElement(By.cssSelector(PDPSelectors.randomVariant));
+				logs.debug("selecting from " + OptionTitle + " variant:" + variant.getText() + "<br>\n");
+				if (SelTestCase.getBrowserName().contains("firefox")) {
+					logs.debug("clicking..." + SelTestCase.getBrowserName());
+					variant.click();
+				} else
+					((JavascriptExecutor) SelTestCase.getDriver()).executeScript("arguments[0].click()", variant);
+				noVariants = false;
+
+			}
+			if (noVariants) {
+				logs.debug("No variants to select from. <br>\n");
+			}
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+
 	}
 
 }

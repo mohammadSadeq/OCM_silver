@@ -1,4 +1,4 @@
-package com.generic.tests.checkout;
+package com.generic.tests.accountSetup;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -10,20 +10,11 @@ import org.testng.xml.XmlTest;
 
 import java.util.LinkedHashMap;
 
-import com.generic.page.PDP;
-import com.generic.page.PaymentDetails;
 import com.generic.page.Registration;
-import com.generic.page.Cart;
-import com.generic.page.CheckOut;
-import com.generic.page.SignIn;
 import com.generic.setup.Common;
 import com.generic.setup.LoggingMsg;
-import com.generic.setup.PagesURLs;
 import com.generic.setup.SelTestCase;
-import com.generic.setup.SheetVariables;
-import com.generic.util.TestUtilities;
 import com.generic.util.dataProviderUtils;
-import com.generic.util.RandomUtilities;
 import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 
@@ -98,6 +89,10 @@ public class AccountsSetup extends SelTestCase {
 			Registration.fillAndClickRegister("Accept", "tester", Pemail,"Elmira College", 
 					(String) userdetails.get(Registration.keys.password),
 					(String) userdetails.get(Registration.keys.password),"",  addressDetails);
+			
+			String registrationSuccessMsg = Registration.getRegistrationSuccessMessage();
+			sassert().assertTrue(registrationSuccessMsg.toLowerCase().contains("Thank you for registering."), 
+					"Regestration Success, validation failed Expected to have in message: Thank you for registering. but Actual message is: " + registrationSuccessMsg);
 			
 			ReportUtil.takeScreenShot(getDriver());
 			

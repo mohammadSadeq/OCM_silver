@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests" thread-count="10" data-provider-thread-count="2">
+<suite name="PLP regression" parallel="tests" thread-count="10" data-provider-thread-count="2">
 
 	
-	<test name="PLP validation ChromeG">
-		<parameter name="browserName" value="ChromeG"></parameter>
+	<test name="PLP validation chrome">
+		<parameter name="browserName" value="chrome"></parameter>
+		<classes>
+              <class name="com.generic.tests.Search_PLP.PLP_Base" />
+		</classes>
+	</test><!-- Test -->
+	<test name="PLP validation firefox">
+		<parameter name="browserName" value="firefox"></parameter>
+		<classes>
+              <class name="com.generic.tests.Search_PLP.PLP_Base" />
+		</classes>
+	</test><!-- Test -->
+	<test name="PLP validation mobile_Nexus 5">
+		<parameter name="browserName" value="mobile_Nexus 5"></parameter>
 		<classes>
               <class name="com.generic.tests.Search_PLP.PLP_Base" />
 		</classes>

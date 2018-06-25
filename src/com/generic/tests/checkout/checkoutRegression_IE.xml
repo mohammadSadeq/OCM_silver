@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="checkout Regression" parallel="tests" thread-count="10" data-provider-thread-count="2">
+<suite name="checkout Regression" parallel="tests" thread-count="1" data-provider-thread-count="1">
 
-	<test name="checkout chrome">
-		<parameter name="browserName" value="chrome"></parameter>
+	<test name="checkout IE">
+		<parameter name="browserName" value="IE"></parameter>
 		<classes>
 			<class name="com.generic.tests.checkout.Base_checkout" />
 		</classes>

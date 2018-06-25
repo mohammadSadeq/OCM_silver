@@ -8,10 +8,7 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import com.generic.selector.FavoriteSelectors;
-import com.generic.selector.PDPSelectors;
-import com.generic.selector.PLPSelectors;
 import com.generic.setup.ExceptionMsg;
-import com.generic.setup.LoggingMsg;
 import com.generic.setup.PagesURLs;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;

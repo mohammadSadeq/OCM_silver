@@ -3,9 +3,6 @@ package com.generic.page;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import com.generic.selector.RegistrationSelectors;
 import com.generic.selector.mailSignupSelectors;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;

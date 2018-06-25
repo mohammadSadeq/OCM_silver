@@ -6,6 +6,8 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -192,12 +194,18 @@ public class SelTestCase {
 			e1.printStackTrace();
 		}
     	try {
-			if (BrowserName.equals("firefox"))
+    		if(browserName == null)
+    		{
+    			Thread.sleep(RandomUtils.nextInt(900,1200));
+    		}
+    		else {
+    		if (BrowserName.equals("firefox"))
 				Thread.sleep(1000);
 			else if (BrowserName.equals("chrome"))
 				Thread.sleep(500);
 			else
 				Thread.sleep(RandomUtils.nextInt(900,1200));
+    		}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -207,6 +215,27 @@ public class SelTestCase {
     {
 		return email.replace("tester", "tester_"+getBrowserName().replace(" ", "_"));
     	
+    }
+    
+    public static void failureHandeler(Throwable t)
+    {
+    	setTestCaseDescription(getTestCaseDescription());
+		logs.debug(MessageFormat.format(LoggingMsg.DEBUGGING_TEXT, t.getMessage()));
+		t.printStackTrace();
+		String temp = getTestCaseReportName();
+		Common.testFail(t, temp);
+		logs.debug(" <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n" + 
+				" <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\r\n" + 
+				" <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\r\n" + 
+				" <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\r\n" + 
+				" \r\n" + 
+				" <button type=\"button\" class=\"btn\" data-toggle=\"collapse\" data-target=\"#demo\">code</button>\r\n" + 
+				"  <div id=\"demo\" class=\"collapse\">\r\n" + 
+				getDriver().getPageSource()+"\r\n" + 
+				"  </div>\r\n" + 
+				"<br>");			
+		ReportUtil.takeScreenShot(getDriver());
+		Assert.assertTrue(false, t.getMessage());
     }
     
     public static void getCurrentFunctionName(Boolean start)
@@ -250,6 +279,16 @@ public class SelTestCase {
     @BeforeMethod
     public void setUp(XmlTest test) throws Exception  {
     	getCurrentFunctionName(true);
+    	
+    	if (test.getParameter("browserName")==null)
+		{
+    		logs.debug("#WARNING: Running test from class it self running on defult browser");
+			Map<String, String> parameters = new LinkedHashMap<>();
+			parameters.put("browserName", "chrome");
+			test.setParameters(parameters);
+		}
+		
+    	
     	suiteName = test.getSuite().getName();
     	testObj.set(test);
     	setAssert();

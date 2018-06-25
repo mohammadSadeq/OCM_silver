@@ -11,7 +11,7 @@ public class CartSelectors
 	public static final String cartTotals = "js-cart-totals";
 	public static final String checkoutBtn = "CONTINUE WITH CHECKOUT";
 	public static final String shippingMethod = "css,select.deliveryMode_select";
-	
+	public static final String removeItem = "remove-cart-item";
 	
 	
 	public static final String continueShopping = "dwfrm_cart_continueShopping";
@@ -37,7 +37,7 @@ public class CartSelectors
 	public static final String productQtyBoxMobile = "css,td>li>div>div>div>form>div>input#quantity_";
 	public static final String updateQunatityBtn = "test_Order_Totals_Subtotal_$1";
 	public static final String actionMenue = "editEntry_";
-	public static final String removeItem = "actionEntry_";
+	
 	public static final String cartContent = "yCmsComponent yComponentWrapper content__empty";
 	public static final String cartOrderTotal = "test_cart_totalPrice_label_$";
 	public static final String cartOrderShipping = "cart-totals";

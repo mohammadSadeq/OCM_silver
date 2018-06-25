@@ -78,13 +78,20 @@ public class ChangePassword_base extends SelTestCase {
 
 			SignIn.logIn(emailSubmail, userDetails.get(Registration.keys.password));
 
-			String url = PagesURLs.getHomePage()+PagesURLs.getPasswordPage();
+			String url = PagesURLs.getHomePage() + PagesURLs.getPasswordPage();
 			getDriver().get(url);
 			CurrentPageTitle = getDriver().getTitle();
 
-			MyAccount_Password.fillInNewValuesAndClickUpdateOrCancel(
-					(String) userDetails.get(Registration.keys.password), newPassword, confirmNewPassword,
-					doClickUpdateBtn, doClickCancelBtn);
+			if (proprties.contains("without")) {
+				MyAccount_Password.fillInNewValuesAndClickUpdateOrCancel("", newPassword, confirmNewPassword,
+						doClickUpdateBtn, doClickCancelBtn);
+			} else if (proprties.contains("incorrect")) {
+				MyAccount_Password.fillInNewValuesAndClickUpdateOrCancel("wrong123456", newPassword, confirmNewPassword,
+						doClickUpdateBtn, doClickCancelBtn);
+			} else
+				MyAccount_Password.fillInNewValuesAndClickUpdateOrCancel(
+						(String) userDetails.get(Registration.keys.password), newPassword, confirmNewPassword,
+						doClickUpdateBtn, doClickCancelBtn);
 			Thread.sleep(3000);
 
 			Map<String, String> Alerts = null;
@@ -133,6 +140,11 @@ public class ChangePassword_base extends SelTestCase {
 				MyAccount_Password.fillInNewValuesAndClickUpdateOrCancel(newPassword,
 						(String) userDetails.get(Registration.keys.password),
 						(String) userDetails.get(Registration.keys.password), doClickUpdateBtn, doClickCancelBtn);
+				if (globalAlerts.contains("globalAlerts")) {
+					String globalAlertMsg = MessageFormat.format(LoggingMsg.ACTUAL_EXPECTED_ERROR,
+							MyAccount_Password.getGlobalAlertsMsg(), Alerts.get("globalAlerts"));
+					sassert().assertTrue(globalAlertMsg.contains(Alerts.get("globalAlerts")), globalAlertMsg);
+				}
 				Thread.sleep(2000);
 			}
 

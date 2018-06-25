@@ -7,19 +7,19 @@
 	<test name="Registration Tests_chrome">
 		<parameter name="browserName" value="chrome"></parameter>
 		<classes>
-			<class name="com.generic.tests.checkout.AccountsSetup" />
+			<class name="com.generic.tests.accountSetup.AccountsSetup" />
 		</classes>
 	</test><!-- Test -->
 	<test name="Registration Tests_firefox">
 		<parameter name="browserName" value="firefox"></parameter>
 		<classes>
-			<class name="com.generic.tests.checkout.AccountsSetup" />
+			<class name="com.generic.tests.accountSetup.AccountsSetup" />
 		</classes>
 	</test><!-- Test -->
 	<test name="Registration Tests_mobile_Nexus 5">
 		<parameter name="browserName" value="mobile_Nexus 5"></parameter>
 		<classes>
-			<class name="com.generic.tests.checkout.AccountsSetup" />
+			<class name="com.generic.tests.accountSetup.AccountsSetup" />
 		</classes>
 	</test><!-- Test -->
 	

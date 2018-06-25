@@ -1,6 +1,5 @@
 package com.generic.setup;
 
-import java.net.URI;
 import java.text.MessageFormat;
 
 import org.testng.util.Strings;

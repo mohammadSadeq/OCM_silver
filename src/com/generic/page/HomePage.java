@@ -3,7 +3,6 @@ package com.generic.page;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 
-import com.generic.selector.CheckOutSelectors;
 import com.generic.selector.HomePageSelectors;
 import com.generic.setup.EnvironmentFiles;
 import com.generic.setup.LoggingMsg;

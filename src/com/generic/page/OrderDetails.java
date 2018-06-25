@@ -4,10 +4,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.generic.selector.CartSelectors;
-import com.generic.selector.CheckOutSelectors;
 import com.generic.selector.OrderDetailsSelector;
-import com.generic.selector.OrderHistorySelector;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;

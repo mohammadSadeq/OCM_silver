@@ -1,11 +1,9 @@
 package com.generic.util;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +15,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.generic.setup.EnvironmentFiles;
-import com.generic.setup.SelTestCase;
 
 public class ReportAnalyzer {
 	public static void analyze2(String path, float period_step ) throws IOException

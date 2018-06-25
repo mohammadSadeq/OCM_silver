@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Registration Regression" parallel="none" thread-count="1" data-provider-thread-count="1">
+	
+	<test name="Registration Tests_ IE">
+		<parameter name="browserName" value="IE"></parameter>
+		<classes>
+			<class name="com.generic.tests.Registration.RegistrationBase" />
+		</classes>
+	</test><!-- Test -->
+	
+</suite> <!-- Suite -->

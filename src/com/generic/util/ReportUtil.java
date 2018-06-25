@@ -20,12 +20,9 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Augmenter;
-
 import com.generic.setup.EnvironmentFiles;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
-import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion.Setting;
 
 
 /**
@@ -358,6 +355,13 @@ public final class ReportUtil extends SelTestCase {
     }
 
 	public static void copyReportToC(String logDir, String dest) throws IOException {
+		File PublisgDir = new File(dest);
+		boolean exists = PublisgDir.exists();
+		if (!exists)
+		{
+			new File(dest).mkdir();
+			
+		}
 		FileUtils.cleanDirectory(new File(dest)); 
 		FileUtils.copyDirectory(new File(logDir), new File(dest));
 		

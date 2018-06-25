@@ -28,7 +28,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.io.FileUtils;
-import org.testng.util.Strings;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 

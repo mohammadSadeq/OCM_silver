@@ -1,34 +1,14 @@
 package com.generic.tests.runners;
 
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.apache.commons.io.FileUtils;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.util.Strings;
 import org.testng.xml.XmlTest;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 
 import com.generic.setup.Common;
@@ -64,7 +44,7 @@ public class BuildFullRegression extends SelTestCase {
 			}
 			
 			if (runners[0].equals("all") )
-				runners = "checkoutRegression,addressBookRegression,PaymentDetailsRegression,PDPRegression,PLPRegression,RegistrationRegression,LoginRegression,cartRregression".split(",");
+				runners = "addressBookRegression,BuildFullRegression,cartRegression_IE11,cartRegression,checkoutRegression,FavoriteRegression_IE11,FavoriteRegression,FinalRegression,FullRegression,HPRegression,LoginRegression_IE,LoginRegression,MiniCartRegression,OrderHistoryRegression_IE,OrderHistoryRegression,PaymentDetailsRegression,PDPRegression_IE11,PDPRegression,PLPRegression_IE,PLPRegression,RegistrationRegression_IE,RegistrationRegression,restPasswordRegression_IE,restPasswordRegression".split(",");
 			
 			Testlogs.get().debug("Started in Regression");
 			

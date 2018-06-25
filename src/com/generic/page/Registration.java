@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Random;
-
-import com.generic.selector.PDPSelectors;
 import com.generic.selector.RegistrationSelectors;
 import com.generic.setup.ExceptionMsg;
 import com.generic.setup.LoggingMsg;

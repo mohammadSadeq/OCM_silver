@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.log4j.Logger;
-
 import com.generic.setup.LoggingMsg;
 
 //Auto-generated Javadoc

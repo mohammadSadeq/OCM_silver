@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import com.generic.selector.CartSelectors;
 import com.generic.selector.MiniCartSelectors;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.ExceptionMsg;

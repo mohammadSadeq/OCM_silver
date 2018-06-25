@@ -20,9 +20,10 @@ public class PDPSelectors {
 	public static String PDPnavs = "css,div.nav-tabs-container>ul>li";
 	public static String PDPnavs_mobile = "css,div.tab-content>div>div>button";
 	public static String favButton = "addToWishlist";
+	public static String randomVariant = "css,.each-option-holder>div>.btn";
+	public static String optionHolder = "each-option-holder";
+	public static String optionHolderTitle="css,p>span.variant-text";
 
-	
-	
 	public static String colorLable = "css,body>div>div>div>div>div>div>div>div>div>ul>li.attribute.color>div.label";
 	public static String color = "Select color: ";
 	public static String sizeAndFamilyLable = "css,div.product-variations > ul > div > ul > li > div.label";

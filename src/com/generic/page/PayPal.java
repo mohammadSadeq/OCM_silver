@@ -5,14 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.WebElement;
-
-import com.generic.selector.CartSelectors;
 import com.generic.selector.PayPalSelectors;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.ExceptionMsg;
-import com.generic.setup.LoggingMsg;
-import com.generic.setup.PagesURLs;
 import com.generic.util.SelectorUtil;
 
 public class PayPal extends SelTestCase {

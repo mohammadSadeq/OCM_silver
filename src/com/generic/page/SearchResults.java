@@ -5,7 +5,6 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.generic.selector.PLPSelectors;
 import com.generic.selector.SearchResultSelectors;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
