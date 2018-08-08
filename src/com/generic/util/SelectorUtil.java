@@ -422,44 +422,6 @@ public class SelectorUtil extends SelTestCase {
 								return driver.findElement(byAction);
 							}
 						});
-						WebElement html = wait.until(new Function<WebDriver, WebElement>() {
-							public WebElement apply(WebDriver driver) {
-								return driver.findElement(By.tagName("html"));
-							}
-						});
-
-						// getDriver().manage().window().maximize();
-						// int width=getDriver().manage().window().getSize().width;
-						// int height=getDriver().manage().window().getSize().height;
-						// logs.debug("Visual testing for.............: WIDTH: "+width+" HEIGHT:
-						// "+height);
-						// File screenshot = ((TakesScreenshot)
-						// getDriver()).getScreenshotAs(OutputType.FILE);
-						// BufferedImage fullImg = ImageIO.read(screenshot);
-						// Point point = field2.getLocation();
-						// Image toolkitImage = fullImg.getScaledInstance(fullImg.getWidth() / 3,
-						// fullImg.getHeight() / 3,
-						// Image.SCALE_SMOOTH);
-						// // Get width and height of the element
-						// int eleWidth = field2.getSize().getWidth();
-						// int eleHeight = field2.getSize().getHeight();
-						// BufferedImage newImage = new BufferedImage(toolkitImage.getWidth(null),
-						// toolkitImage.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-						// Graphics g = newImage.getGraphics();
-						// g.drawImage(toolkitImage, 0, 0, null);
-						// // Crop the entire page screenshot to get only element screenshot
-						// BufferedImage eleScreenshot = newImage.getSubimage(point.getX(),
-						// point.getY(), eleWidth,
-						// eleHeight);
-						// ImageIO.write(eleScreenshot, "png",
-						// new File(EnvironmentFiles.getVisualTestingAssetsPath() + "/screenshot.png"));
-						// ImageIO.write(newImage, "png",
-						// new File(EnvironmentFiles.getVisualTestingAssetsPath() + "/fullscreen.png"));
-						// // FileUtils.copyFile(screenshot, new
-						// File(EnvironmentFiles.getVisualTestingAssetsPath()+"/FULLfullscreen.png"));
-						// screenShot.set(screenshot.);
-						// screenShot.set(new AShot().coordsProvider(new WebDriverCoordsProvider())
-						// .takeScreenshot(SelTestCase.getDriver(), field2));
 						if (!browser.contains("mobile")) {
 							screenShot.set(new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100))
 									.shootingStrategy(ShootingStrategies.scaling((float) 3.0))
