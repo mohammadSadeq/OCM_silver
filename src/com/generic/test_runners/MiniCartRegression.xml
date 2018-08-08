@@ -8,8 +8,8 @@
 			<class name="com.generic.tests.MiniCart.Base_MiniCart" />
 		</classes>
 	</test><!-- Test -->
-	<test name="MiniCart firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+	<test name="MiniCart Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
 			<class name="com.generic.tests.MiniCart.Base_MiniCart" />
 		</classes>

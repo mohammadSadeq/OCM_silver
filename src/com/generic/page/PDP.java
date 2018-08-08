@@ -669,6 +669,8 @@ public class PDP extends SelTestCase {
 			getCurrentFunctionName(true);
 			PLP.searchProduct(KeyWord);
 			Thread.sleep(3000);
+			if(getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.firefox)||getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.IE))
+				Thread.sleep(4000);
 			PLP.pickRandomPDP();
 			String ProductTitle = getTitle();
 			getCurrentFunctionName(false);

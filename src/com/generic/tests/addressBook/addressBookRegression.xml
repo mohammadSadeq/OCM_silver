@@ -7,8 +7,8 @@
 		<class name="com.generic.tests.addressBook.AddressBookValidationBase" />
 	</classes>
 </test><!-- Test -->
-<test name="addressBook firefox">
-	<parameter name="browserName" value="firefox"></parameter>
+<test name="addressBook Firefox">
+	<parameter name="browserName" value="Firefox"></parameter>
 	<classes>
 		<class name="com.generic.tests.addressBook.AddressBookValidationBase" />
 	</classes>

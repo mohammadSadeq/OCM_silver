@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.generic.selector.CheckOutSelectors;
 import com.generic.setup.ExceptionMsg;
+import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.util.ReportUtil;
@@ -532,9 +533,9 @@ public class CheckOut extends SelTestCase {
 				gotoPaytment();
 				logs.debug("Waiting shipping address verification system");
 				Thread.sleep(4000);
-				if (getBrowserName().contains("firefox"))
+				if (getBrowserName().contains(GlobalVariables.browsers.firefox))
 					Thread.sleep(4000);
-				if (getBrowserName().contains("IE"))
+				if (getBrowserName().contains(GlobalVariables.browsers.IE))
 					Thread.sleep(10000);
 
 				try {

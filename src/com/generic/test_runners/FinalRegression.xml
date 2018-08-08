@@ -1,56 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?><suite allow-return-values="false" configfailurepolicy="skip" data-provider-thread-count="2" group-by-instances="false" guice-stage="DEVELOPMENT" junit="false" name="Suite" parallel="tests" preserve-order="true" skipfailedinvocationcounts="false" thread-count="2">
-<test name="addressBook Chrome ">
-	<parameter name="browserName" value="Chrome"/>
+<?xml version="1.0" encoding="UTF-8"?><suite allow-return-values="false" configfailurepolicy="skip" data-provider-thread-count="1" group-by-instances="false" guice-stage="DEVELOPMENT" junit="false" name="Suite" parallel="tests" preserve-order="true" skipfailedinvocationcounts="false" thread-count="1">
+<test name="addressBook IE ">
+	<parameter name="browserName" value="IE"/>
 	<classes>
 		<class name="com.generic.tests.addressBook.AddressBookValidationBase"/>
 	</classes>
-</test><test name="cart Tests Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+</test><test name="cart Tests IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.Cart.Base_cart"/>
 		</classes>
-	</test><test name="checkout Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="checkout IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.checkout.Base_checkout"/>
 		</classes>
-	</test><test name="fav Tests _ Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="fav Tests _ IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.Favorite.Base_Favorite"/>
 		</classes>
-	</test><test name="Login Regression Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="Login Regression IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.login.LoginBase"/>
 		</classes>
-	</test><test name="MiniCart Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="MiniCart IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.MiniCart.Base_MiniCart"/>
 		</classes>
-	</test><test name="OrderHistory Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="OrderHistory IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.OrderHistory.Base_OrderHistory"/>
 		</classes>
-	</test><test name="PDP Tests _ Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="PDP Tests _ IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.PDP.Base_PDP"/>
 		</classes>
-	</test><test name="PLP validation Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="PLP validation IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
               <class name="com.generic.tests.Search_PLP.PLP_Base"/>
 		</classes>
-	</test><test name="Registration Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="Registration IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.Registration.RegistrationBase"/>
 		</classes>
-	</test><test name="RestPassword Chrome ">
-		<parameter name="browserName" value="Chrome"/>
+	</test><test name="RestPassword IE ">
+		<parameter name="browserName" value="IE"/>
 		<classes>
 			<class name="com.generic.tests.Password.ChangePassword_base"/>
 		</classes>

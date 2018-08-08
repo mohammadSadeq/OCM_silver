@@ -8,8 +8,8 @@
 		</classes>
 	</test><!-- Test -->
 	
-	<test name="fav Tests _ firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+	<test name="fav Tests _ Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
 			<class name="com.generic.tests.Favorite.Base_Favorite" />
 		</classes>

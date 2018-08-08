@@ -8,8 +8,8 @@
 			<class name="com.generic.tests.OrderHistory.Base_OrderHistory" />
 		</classes>
 	</test><!-- Test -->
-	<test name="OrderHistory firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+	<test name="OrderHistory Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
 			<class name="com.generic.tests.OrderHistory.Base_OrderHistory" />
 		</classes>

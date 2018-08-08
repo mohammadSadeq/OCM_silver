@@ -204,9 +204,9 @@ public class SelTestCase {
     			Thread.sleep(RandomUtils.nextInt(900,1200));
     		}
     		else {
-    		if (BrowserName.equals("firefox"))
+    		if (BrowserName.equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(1000);
-			else if (BrowserName.equals("chrome"))
+			else if (BrowserName.equals(GlobalVariables.browsers.chrome))
 				Thread.sleep(500);
 			else
 				Thread.sleep(RandomUtils.nextInt(900,1200));

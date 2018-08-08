@@ -16,6 +16,7 @@ import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.page.SignIn;
 import com.generic.setup.Common;
+import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
@@ -106,14 +107,14 @@ public class Base_checkout extends SelTestCase {
 						.iterator().next().getValue();
 				
 				Registration.goToRegistrationForm();
-				if (getBrowserName().equals("IE"))
+				if (getBrowserName().equals(GlobalVariables.browsers.IE))
 					Thread.sleep(6000);
 				Registration.fillAndClickRegister((String) RandomUserdetails.get(Registration.keys.firstName),
 						(String) RandomUserdetails.get(Registration.keys.lastName), Pemail, "Elmira College",
 						(String) RandomUserdetails.get(Registration.keys.password),
 						(String) RandomUserdetails.get(Registration.keys.password), "", addressDetails);
 			}
-			if (getBrowserName().equals("IE"))
+			if (getBrowserName().equals(GlobalVariables.browsers.IE))
 				Thread.sleep(6000);
 			for (String product : products.split("\n")) {
 				Testlogs.get().debug(MessageFormat.format(LoggingMsg.ADDING_PRODUCT, product));
@@ -144,7 +145,7 @@ public class Base_checkout extends SelTestCase {
 			}
 
 			Thread.sleep(3000);
-			if (getBrowserName().equals("IE") || getBrowserName().equals("firefox"))
+			if (getBrowserName().equals(GlobalVariables.browsers.IE) || getBrowserName().equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(6000);
 
 			// OCM-custom
@@ -160,7 +161,7 @@ public class Base_checkout extends SelTestCase {
 			LinkedHashMap<String, String> billAddressDetails = (LinkedHashMap<String, String>) addresses
 					.get(billingAddress);
 
-			if (getBrowserName().equals("IE")|| getBrowserName().equals("firefox"))
+			if (getBrowserName().equals(GlobalVariables.browsers.IE)|| getBrowserName().equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(6000);
 			// fill billing form and click checkout
 			CheckOut.paymentInnformation.fillAndclickNext(payment, "Tester",
@@ -178,11 +179,11 @@ public class Base_checkout extends SelTestCase {
 
 			Thread.sleep(1000);
 			// Waiting payment to be processed
-			if (getBrowserName().equals("firefox"))
+			if (getBrowserName().equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(2000);
 			
 			if (!external) { // this logic to avoid passing this block in case you call it from other class
-				if (getBrowserName().equals("IE"))
+				if (getBrowserName().equals(GlobalVariables.browsers.IE))
 					Thread.sleep(10000);
 				ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 				
@@ -196,7 +197,7 @@ public class Base_checkout extends SelTestCase {
 										+ billingAddressDetails + "<br>and expected: "
 										+ addressDetails.get(CheckOut.shippingAddress.keys.adddressLine));
 
-				if (getBrowserName().equals("IE"))
+				if (getBrowserName().equals(GlobalVariables.browsers.IE))
 					Thread.sleep(4000);
 				String shippinhAddressDetails = CheckOut.orderConfirmation.getShippingAddrerss();
 				sassert()

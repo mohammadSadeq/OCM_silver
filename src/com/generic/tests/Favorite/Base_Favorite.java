@@ -99,6 +99,8 @@ public class Base_Favorite extends SelTestCase {
 			else {
 				ProductTitle = PDP.getRandomProduct("dryer");
 			}
+			if(getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.firefox)||getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.IE))
+				Thread.sleep(4000);
 			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			
 			if (proprties.contains("PDP") || !proprties.contains("PLP"))
@@ -113,7 +115,7 @@ public class Base_Favorite extends SelTestCase {
 			String AllProducts = Favorite.getAllProducts();
 			sassert().assertTrue(AllProducts.contains(ProductTitle), "Product was not added successfully FAV ");
 			
-			if(getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.firefox))
+			if(getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.firefox)||getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.IE))
 				Thread.sleep(3000);
 			
 			int NumberOfProducts = Favorite.getNumberOfProducts();
