@@ -25,6 +25,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
+
 import com.generic.setup.SelTestCase;
 
 import ru.yandex.qatools.ashot.AShot;
@@ -135,9 +136,9 @@ public class SelectorUtil extends SelTestCase {
 				selectorType = (!(foundElements.isEmpty()) ? subStr : selectorType);
 			}
 
-			if (foundElements.isEmpty() && subStr.contains(":eq")) { // TODO: check the if (eq) case
-																		// logs.debug(MessageFormat.format(LoggingMsg.IN_SELECTOR_TYPE,
-																		// "xpath"));
+			if (foundElements.isEmpty() && subStr.contains(":eq")) { 
+				// TODO: check the if (eq) case
+				// logs.debug(MessageFormat.format(LoggingMsg.IN_SELECTOR_TYPE,"xpath"));
 				foundElements = htmlDoc.select(subStr);
 				// nth-child() is the Selenium equivalent to JSoup eq()
 				String subStrTemp = subStr;
@@ -422,13 +423,14 @@ public class SelectorUtil extends SelTestCase {
 								return driver.findElement(byAction);
 							}
 						});
-						if (!browser.contains("mobile")) {
+						
+						if (browser.contains("mobile")) {
 							screenShot.set(new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100))
 									.shootingStrategy(ShootingStrategies.scaling((float) 3.0))
 									.takeScreenshot(SelTestCase.getDriver(), field2));
 						} else
 							screenShot.set(new AShot().takeScreenshot(SelTestCase.getDriver(), field2));
-
+						
 					} else if (action.equals("click")) {
 						Wait<WebDriver> wait = new FluentWait<WebDriver>(SelTestCase.getDriver())
 								.withTimeout(30, TimeUnit.SECONDS).pollingEvery(5, TimeUnit.SECONDS)

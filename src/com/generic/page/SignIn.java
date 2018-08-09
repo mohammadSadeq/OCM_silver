@@ -35,8 +35,9 @@ public class SignIn extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			typeUsername(userName);
-			typePassword(Password + ",pressEnter");
-			// clickLogin();
+			//typePassword(Password + ",pressEnter");
+			typePassword(Password);
+			clickLogin();
 			Thread.sleep(3000);
 			getCurrentFunctionName(false);
 		} catch (NoSuchElementException e) {
@@ -46,6 +47,7 @@ public class SignIn extends SelTestCase {
 		}
 	}
 
+	//done-ocm
 	public static void clickLogin() throws Exception {
 		try {
 			getCurrentFunctionName(true);

@@ -124,7 +124,8 @@ public class TestUtilities extends SelTestCase {
 		
 		try {
 			logs.debug("System variable enviroenment is "+System.getenv("Environment"));
-			getCONFIG().setProperty("testEnvironment", System.getenv("Environment"));			
+			getCONFIG().setProperty("testEnvironment", System.getenv("Environment"));
+			getCONFIG().setProperty("HomePage", System.getenv("Environment").replace("/OCM/login", ""));
 		}
 		catch(Exception e)
 		{

@@ -15,11 +15,11 @@ public class SignInSelectors
 	public static final String alertPositiveForgottenPassword = "success-password-text";
 	public static final String forgottenPwdEmailError = "forgottenPwd.email-error";
 	public static final String mainMenuebutton = "toggle-mobile-menu";
+	public static final String loginBtn = "css,div.login-section>form>div.form-group>button";
 	
 	
 	
 	public static final String wrongPassword_mail = "css,div>div>form>div.error-form";
-	public static final String loginBtn = "dwfrm_login_login";
 	
 	
 }

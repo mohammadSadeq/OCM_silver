@@ -16,6 +16,7 @@ public class GlobalVariables extends SelTestCase {
 		public static final String Nexus = "mobile_Nexus 5";
 		public static final String IE = "IE";
 		public static final String edge = "edge";
+		public static final String iOS = "IOS_grid";
 	}
 	
 	

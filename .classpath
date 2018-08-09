@@ -44,5 +44,6 @@
 	<classpathentry kind="lib" path="C:/SelAssets/jars/sel3_12_httpcore-4.4.6.jar"/>
 	<classpathentry kind="lib" path="C:/SelAssets/jars/sel3_12_okhttp-3.9.1.jar"/>
 	<classpathentry kind="lib" path="C:/SelAssets/jars/sel3_12_okio-1.13.0.jar"/>
+	<classpathentry kind="lib" path="C:/SelAssets/jars/java-client-5.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -25,6 +25,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import org.testng.xml.XmlTest;
 
+import com.generic.setup.GlobalVariables.browsers;
 import com.generic.util.ReportAnalyzer;
 import com.generic.util.ReportUtil;
 import com.generic.util.TestUtilities;
@@ -337,7 +338,7 @@ public class SelTestCase {
     	getCurrentFunctionName(true);
     	
     	WebDriver driver = SelTestCase.getDriver();
-        if (driver != null) {
+        if (driver != null && !getBrowserName().contains(browsers.iOS)) {
             driver.quit();
         }
         getCurrentFunctionName(false);
