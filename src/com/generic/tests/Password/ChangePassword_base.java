@@ -1,4 +1,4 @@
-package com.generic.tests.MyAccount_Password;
+package com.generic.tests.Password;
 
 import java.text.MessageFormat;
 
@@ -30,14 +30,12 @@ public class ChangePassword_base extends SelTestCase {
 	public static final String testDataSheet = SheetVariables.PasswordRegressionSheet;
 	private static XmlTest testObject;
 	private static ThreadLocal<SASLogger> Testlogs = new ThreadLocal<SASLogger>();
-	private static LinkedHashMap<String, Object> users;
 	private String CurrentPageTitle;
 
 	@BeforeTest
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
 		testObject = test;
-		users = Common.readUsers();
 	}
 
 	@DataProvider(name = "Password", parallel = true)
@@ -156,7 +154,7 @@ public class ChangePassword_base extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		}
 

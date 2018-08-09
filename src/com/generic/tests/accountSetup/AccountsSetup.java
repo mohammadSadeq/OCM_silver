@@ -20,11 +20,6 @@ import com.generic.util.SASLogger;
 
 public class AccountsSetup extends SelTestCase {
 
-	private static LinkedHashMap<String, Object> addresses = null;
-	private static LinkedHashMap<String, Object> invintory = null;
-	private static LinkedHashMap<String, Object> paymentCards = null;
-	private static LinkedHashMap<String, Object> users = null;
-
 	// user types
 	public static final String guestUser = "guest";
 	public static final String freshUser = "fresh";
@@ -42,10 +37,6 @@ public class AccountsSetup extends SelTestCase {
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger("Account_setup"));
 		testObject = test;
-		addresses = Common.readAddresses();
-		invintory = Common.readLocalInventory();
-		paymentCards = Common.readPaymentcards();
-		users = Common.readUsers();
 	}
 
 	@DataProvider(name = "Account_Setup", parallel = true)
@@ -94,7 +85,7 @@ public class AccountsSetup extends SelTestCase {
 			sassert().assertTrue(registrationSuccessMsg.toLowerCase().contains("Thank you for registering."), 
 					"Regestration Success, validation failed Expected to have in message: Thank you for registering. but Actual message is: " + registrationSuccessMsg);
 			
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			
 //			getDriver().get(PagesURLs.getPaymentDetailsPage());
 //
@@ -169,7 +160,7 @@ public class AccountsSetup extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 	}// test

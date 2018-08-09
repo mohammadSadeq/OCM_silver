@@ -1,4 +1,4 @@
-package com.generic.tests.MyAccount_addressBook;
+package com.generic.tests.addressBook;
 
 import java.text.MessageFormat;
 
@@ -24,8 +24,6 @@ import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 
 public class AddressBookValidationBase extends SelTestCase {
-	private static LinkedHashMap<String, Object> addresses = null;
-	private static LinkedHashMap<String, Object> users = null;
 	// used sheet in test
 	public static final String testDataSheet = SheetVariables.AddressBookSheet;
 
@@ -36,8 +34,6 @@ public class AddressBookValidationBase extends SelTestCase {
 	@BeforeTest
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
-		addresses = Common.readAddresses();
-		users = Common.readUsers();
 		testObject = test;
 	}
 
@@ -137,7 +133,7 @@ public class AddressBookValidationBase extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 	}// test

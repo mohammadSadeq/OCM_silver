@@ -17,16 +17,17 @@ public class AddressBookSelectors {
 	public static final String alertInfo= "alert-text"; //Address created successfully
 	public static final String selectFirstAddress = "css,.account-addressbook-list>.each-address-holder>.address-info";
 	public static final String addressActions = "action-links btn small btn-secondary-default";
-	public static final String removeBtn = "Delete";
+	public static final String removeBtn = ".each-address-holder> div > a";
 	public static final String editAddress = "Edit";
 	public static final String defaultAddress = "Make Default";
-	public static final String deleteBtn = "btn btn-primary-default left-button-modal";
+	public static final String deleteBtn = "css,.modal.fade.bootstrap-modal.in>div>div>div>div>div>a.left-button-modal";
 	public static final String fnameError = "address.firstName-error"; //Please enter your first name
 	public static final String lnameError = "address.surname-error"; //Please enter your last name
 	public static final String address1Error = "address.line1-error"; //Please enter a Street Address
 	public static final String cityError = "address.townCity-error"; // Please enter a city
 	public static final String stateError = "address.region-error"; // Please select a state
 	public static final String postcodeEerror = "address.postcode-error"; //Please enter a ZIP code
+	public static final String address_holder ="each-address-holder";
 	
 	public static final String clickEditAddress = "dwfrm_profile_address_edit";
 	public static final String emailAddress = "email";
@@ -44,5 +45,6 @@ public class AddressBookSelectors {
 	public static final String addressBackBtn = "addressBackBtn";
 	public static final String accountAddressbookList = "col-xs-12 col-sm-6 col-md-4 card";
 	public static final String countery = "";
+	
 
 }

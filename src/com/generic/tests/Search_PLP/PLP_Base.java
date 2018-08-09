@@ -76,7 +76,7 @@ public class PLP_Base extends SelTestCase {
 
 			
 			
-			if (Proprties.contains("sort"))
+			if (Proprties.contains("sort") && !getBrowserName().contains("mobile"))
 				sassert().assertTrue(PLP.sortAndValidate(Proprties.split("sort")[1].split("\n")[0]),"The sorting is not OK");
 			
 			if (Proprties.contains("Pagination"))
@@ -92,7 +92,7 @@ public class PLP_Base extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		}
 

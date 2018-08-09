@@ -135,6 +135,18 @@ public class Registration extends SelTestCase {
 		}
 
 	}
+	// done-ocm
+	public static void switchToDefaultContent() {
+		try {
+			getCurrentFunctionName(true);
+			getDriver().switchTo().defaultContent();
+			getCurrentFunctionName(false);
+		} catch (NoSuchElementException e) {
+			logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
+			}.getClass().getEnclosingMethod().getName()));
+			throw e;
+		}
+}
 
 	// done-OCM
 	public static void fillAndClickRegister(String fName, String lName, String email, String school, String pass,

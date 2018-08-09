@@ -7,8 +7,8 @@
 			<class name="com.generic.tests.Cart.Base_cart" />
 		</classes>
 	</test><!-- Test -->
-	<test name="cart Tests _firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+	<test name="cart Tests _Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
 			<class name="com.generic.tests.Cart.Base_cart" />
 		</classes>

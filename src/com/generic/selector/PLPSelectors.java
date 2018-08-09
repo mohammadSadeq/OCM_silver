@@ -7,7 +7,7 @@ public class PLPSelectors {
 	public static final String sortPHTL = "css,div.custom-dropdown-content.sort-dropdown-content>button";
 	public static final String sortPHTLMobile = "Price: High to Low";
 	public static final String sortPLTH = "css,div.custom-dropdown-content.sort-dropdown-content>button";
-	public static final String sortPLTHMobile = "Price: Low to High";
+	public static final String sortPLTHMobile = "css,div#PLPSortByModal>div>div>div.modal-body>ul>li";
 	public static final String productsPrices = "actual-price";
 	public static final String productNmber = "pagination-bar-results";
 	public static final String SearchBox = "js-site-search-input";

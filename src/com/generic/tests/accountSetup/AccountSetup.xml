@@ -10,8 +10,8 @@
 			<class name="com.generic.tests.accountSetup.AccountsSetup" />
 		</classes>
 	</test><!-- Test -->
-	<test name="Registration Tests_firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+	<test name="Registration Tests_Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
 			<class name="com.generic.tests.accountSetup.AccountsSetup" />
 		</classes>

@@ -12,6 +12,7 @@ import org.testng.xml.XmlTest;
 
 import com.generic.page.Registration;
 import com.generic.setup.Common;
+import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
@@ -21,8 +22,6 @@ import com.generic.util.SASLogger;
 import com.generic.util.dataProviderUtils;
 
 public class RegistrationBase extends SelTestCase {
-	private static LinkedHashMap<String, Object> users =null ;
-	private static LinkedHashMap<String, Object> addresses = null; 
 
 	// possible scenarios
 	public static final String freshUser = "fresh";
@@ -55,8 +54,6 @@ public class RegistrationBase extends SelTestCase {
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
 		testObject = test;
-		users = Common.readUsers();
-		addresses = Common.readAddresses();
 	}
 
 	@DataProvider(name = "Registration", parallel = true)
@@ -116,6 +113,7 @@ public class RegistrationBase extends SelTestCase {
 				LinkedHashMap<String, String> userdetails = (LinkedHashMap<String, String>) users.entrySet().iterator()
 						.next().getValue();
 				email = userdetails.get(Registration.keys.email);
+				email=getSubMailAccount(email);
 				logs.debug("Registration mail: "+email);
 				Registration.fillAndClickRegister(firstName,lastName,email,"Elmira College",password,password, type, addressDetails);
 				String validationMsg = Registration.getEmailAddressError();
@@ -123,8 +121,13 @@ public class RegistrationBase extends SelTestCase {
 			}
 			if (proprties.contains(emptyData)) {
 				Registration.clickRegisterButton();
-				if(getBrowserName().equals("IE"))
-					Thread.sleep(2000);
+				// switch To Default Content
+				if (getBrowserName().equals(GlobalVariables.browsers.IE)
+						|| getBrowserName().equals(GlobalVariables.browsers.firefox))
+				{
+					Registration.switchToDefaultContent();
+					Thread.sleep(3000);
+				}
 				
 				String validationMsg = Registration.getFirstNameError();
 				sassert().assertTrue(validationMsg.contains(firstNameValidation),
@@ -174,7 +177,7 @@ public class RegistrationBase extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 	}// test

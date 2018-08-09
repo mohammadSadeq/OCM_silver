@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import com.generic.selector.PDPSelectors;
 import com.generic.setup.ExceptionMsg;
+import com.generic.setup.GlobalVariables;
 import com.generic.setup.SelTestCase;
 import com.generic.util.SelectorUtil;
 
@@ -667,6 +668,9 @@ public class PDP extends SelTestCase {
 		try {
 			getCurrentFunctionName(true);
 			PLP.searchProduct(KeyWord);
+			Thread.sleep(3000);
+			if(getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.firefox)||getBrowserName().equalsIgnoreCase(GlobalVariables.browsers.IE))
+				Thread.sleep(4000);
 			PLP.pickRandomPDP();
 			String ProductTitle = getTitle();
 			getCurrentFunctionName(false);
@@ -767,12 +771,12 @@ public class PDP extends SelTestCase {
 				}
 				WebElement holder = SelectorUtil.getNthElement(subStrArr, i);
 				OptionTitle = holder.findElements(By.cssSelector(PDPSelectors.optionHolderTitle)).get(0).getText();
-				if(OptionTitle.equals("")) {
+				if (OptionTitle.equals("")) {
 					OptionTitle = holder.findElements(By.cssSelector(PDPSelectors.optionHolderTitle)).get(1).getText();
 				}
 				WebElement variant = holder.findElement(By.cssSelector(PDPSelectors.randomVariant));
 				logs.debug("selecting from " + OptionTitle + " variant:" + variant.getText() + "<br>\n");
-				if (SelTestCase.getBrowserName().contains("firefox")) {
+				if (SelTestCase.getBrowserName().contains(GlobalVariables.browsers.firefox)) {
 					logs.debug("clicking..." + SelTestCase.getBrowserName());
 					variant.click();
 				} else

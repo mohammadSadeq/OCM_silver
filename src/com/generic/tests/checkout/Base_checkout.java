@@ -16,6 +16,7 @@ import com.generic.page.Cart;
 import com.generic.page.CheckOut;
 import com.generic.page.SignIn;
 import com.generic.setup.Common;
+import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.setup.SheetVariables;
@@ -25,11 +26,6 @@ import com.generic.util.ReportUtil;
 import com.generic.util.SASLogger;
 
 public class Base_checkout extends SelTestCase {
-
-	private static LinkedHashMap<String, Object> addresses = null;
-	private static LinkedHashMap<String, Object> invintory = null;
-	private static LinkedHashMap<String, Object> paymentCards = null;
-	private static LinkedHashMap<String, Object> users = null;
 
 	// user types
 	public static final String guestUser = "guest";
@@ -50,10 +46,6 @@ public class Base_checkout extends SelTestCase {
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger("checkout_setup"));
 		testObject = test;
-		addresses = Common.readAddresses();
-		invintory = Common.readLocalInventory();
-		paymentCards = Common.readPaymentcards();
-		users = Common.readUsers();
 	}
 
 	@DataProvider(name = "Orders", parallel = true)
@@ -115,14 +107,14 @@ public class Base_checkout extends SelTestCase {
 						.iterator().next().getValue();
 				
 				Registration.goToRegistrationForm();
-				if (getBrowserName().equals("IE"))
+				if (getBrowserName().equals(GlobalVariables.browsers.IE))
 					Thread.sleep(6000);
 				Registration.fillAndClickRegister((String) RandomUserdetails.get(Registration.keys.firstName),
 						(String) RandomUserdetails.get(Registration.keys.lastName), Pemail, "Elmira College",
 						(String) RandomUserdetails.get(Registration.keys.password),
 						(String) RandomUserdetails.get(Registration.keys.password), "", addressDetails);
 			}
-			if (getBrowserName().equals("IE"))
+			if (getBrowserName().equals(GlobalVariables.browsers.IE))
 				Thread.sleep(6000);
 			for (String product : products.split("\n")) {
 				Testlogs.get().debug(MessageFormat.format(LoggingMsg.ADDING_PRODUCT, product));
@@ -152,8 +144,8 @@ public class Base_checkout extends SelTestCase {
 				Cart.clickCheckout();
 			}
 
-			Thread.sleep(1000);
-			if (getBrowserName().equals("IE"))
+			Thread.sleep(3000);
+			if (getBrowserName().equals(GlobalVariables.browsers.IE) || getBrowserName().equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(6000);
 
 			// OCM-custom
@@ -169,7 +161,7 @@ public class Base_checkout extends SelTestCase {
 			LinkedHashMap<String, String> billAddressDetails = (LinkedHashMap<String, String>) addresses
 					.get(billingAddress);
 
-			if (getBrowserName().equals("IE"))
+			if (getBrowserName().equals(GlobalVariables.browsers.IE)|| getBrowserName().equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(6000);
 			// fill billing form and click checkout
 			CheckOut.paymentInnformation.fillAndclickNext(payment, "Tester",
@@ -187,13 +179,13 @@ public class Base_checkout extends SelTestCase {
 
 			Thread.sleep(1000);
 			// Waiting payment to be processed
-			if (getBrowserName().equals("firefox"))
+			if (getBrowserName().equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(2000);
 			
 			if (!external) { // this logic to avoid passing this block in case you call it from other class
-				if (getBrowserName().equals("IE"))
+				if (getBrowserName().equals(GlobalVariables.browsers.IE))
 					Thread.sleep(10000);
-				ReportUtil.takeScreenShot(getDriver());
+				ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 				
 				String billingAddressDetails = CheckOut.orderConfirmation.getBillingAddrerss();
 				sassert()
@@ -205,7 +197,7 @@ public class Base_checkout extends SelTestCase {
 										+ billingAddressDetails + "<br>and expected: "
 										+ addressDetails.get(CheckOut.shippingAddress.keys.adddressLine));
 
-				if (getBrowserName().equals("IE"))
+				if (getBrowserName().equals(GlobalVariables.browsers.IE))
 					Thread.sleep(4000);
 				String shippinhAddressDetails = CheckOut.orderConfirmation.getShippingAddrerss();
 				sassert()
@@ -235,7 +227,7 @@ public class Base_checkout extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 	}// test

@@ -31,8 +31,12 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
+
+import com.generic.setup.GlobalVariables.browsers;
 import com.generic.util.ReportUtil;
 import com.generic.util.dataProviderUtils;
+
+import io.appium.java_client.ios.IOSDriver;
 
 public class Common extends SelTestCase {
 
@@ -155,7 +159,23 @@ public class Common extends SelTestCase {
 				System.setProperty("webdriver.chrome.driver", PagesURLs.getDriversPath("chrome"));
 				return new ChromeDriver(capabilities);
 
-			} else {
+			} else if (browser.equalsIgnoreCase("IOS_grid")) {
+				capabilities = DesiredCapabilities.iphone();
+				capabilities.setCapability("browserName", "Safari");
+				capabilities.setCapability("deviceName", "iPhone");
+				capabilities.setCapability("udid", "021319a68bdf5c78436027f183c4ec14b54df13e");// from xcode
+				capabilities.setCapability("useNewWDA", true);
+				capabilities.setCapability("automationName", "XCUITest");
+				capabilities.setCapability("startIWDP", true);
+				capabilities.setCapability("webkitResponseTimeout", 15000);
+				capabilities.setCapability("nativeWebTap", true);
+				capabilities.setCapability("autoWebview", true);
+				capabilities.setCapability("platformVersion", "11.4"); // from xcode
+				capabilities.setCapability("platformName", "iOS");
+
+				return new IOSDriver(new URL("http://172.28.8.69:4723/wd/hub"), capabilities);
+
+			}else {
 				logs.debug(LoggingMsg.INVALID_BROWSER_ERROR_MSG);
 				throw new Exception(LoggingMsg.INVALID_BROWSER_ERROR_MSG);
 			}
@@ -187,12 +207,15 @@ public class Common extends SelTestCase {
 		if (getCONFIG().getProperty("chached_chrome").equalsIgnoreCase("yes")) {
 			// TODO: please enable it later with correct url in case Chrome Cached
 			logs.debug(LoggingMsg.ENABLE_BLOCK_FOR_FUTURE);
-			 logs.debug("signing out from all users");
-			 logs.debug(PagesURLs.getSignOutPage());
-			 getDriver().get(PagesURLs.getSignOutPage());
+			logs.debug("signing out from all users");
+			logs.debug(PagesURLs.getSignOutPage());
+			getDriver().get(PagesURLs.getSignOutPage());
 		}
+
 		getDriver().get(getCONFIG().getProperty("testEnvironment"));
-		getDriver().manage().window().maximize();
+		if (!Browser.contains(browsers.iOS))
+			getDriver().manage().window().maximize();
+
 		if (Browser.contains("IE") || Browser.contains("edge")) {
 			Thread.sleep(2000);
 			getDriver().navigate().to("javascript:document.getElementById('overridelink').click()");
@@ -596,9 +619,9 @@ public class Common extends SelTestCase {
 		return browsers.toArray(new String[browsers.size()]);
 	}//read browsers
 
-	public static void takeScreenShot() {
+	public static void takeScreenShot2() {
 		// TODO Auto-generated method stub
-		ReportUtil.takeScreenShot(getDriver());
+		ReportUtil.takeScreenShot(getDriver(), "common");
 	}
 
 }// class

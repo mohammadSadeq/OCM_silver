@@ -4,7 +4,7 @@
 <test name="addressBook IE">
 	<parameter name="browserName" value="IE"></parameter>
 	<classes>
-		<class name="com.generic.tests.MyAccount_addressBook.AddressBookValidationBase" />
+		<class name="com.generic.tests.addressBook.AddressBookValidationBase" />
 	</classes>
 </test><!-- Test -->
 

@@ -7,8 +7,8 @@
 			<class name="com.generic.tests.login.LoginBase" />
 		</classes>
 	</test><!-- Test -->
-		<test name="Login Regression Tests_ firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+		<test name="Login Regression Tests_ Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
 			<class name="com.generic.tests.login.LoginBase" />
 		</classes>

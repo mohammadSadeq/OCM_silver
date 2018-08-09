@@ -28,9 +28,6 @@ import com.generic.util.dataProviderUtils;
 
 public class Base_cart extends SelTestCase {
 
-	private static LinkedHashMap<String, Object> invintory;
-	private static LinkedHashMap<String, Object> users;
-
 	// user types
 	public static final String guestUser = "guest";
 	public static final String loggedInUser = "loggedin";
@@ -47,8 +44,6 @@ public class Base_cart extends SelTestCase {
 		testCaseRepotId = SheetVariables.cartCaseId;
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
 		testObject = test;
-		invintory = Common.readLocalInventory();
-		users = Common.readUsers();
 	}
 
 	@DataProvider(name = "Carts", parallel = true)
@@ -100,12 +95,12 @@ public class Base_cart extends SelTestCase {
 			//TODO:// flow to support coupon validation
 			if (!"".equals(promotion)) {
 				Cart.applyPromotion(promotion);
-				ReportUtil.takeScreenShot(getDriver());
+				ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 				String validationMessage = Cart.validateCoupon();
 				if (!ValidationMSG.equals(""))
 					sassert().assertTrue(ValidationMSG.contains(validationMessage),
 							"<font color=#f442cb>coupon messgae is not same:  " + ValidationMSG + "</font>");
-				ReportUtil.takeScreenShot(getDriver());
+				ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			}
 			
 			if (proprties.contains("Verify items")) {
@@ -178,7 +173,7 @@ public class Base_cart extends SelTestCase {
 				sassert().assertTrue(siteOrderTotal == SheetOrderTotal , "FAILED: the totals should be matched: <br>"+orderTotalMsg);
 			}//verify order total
 			
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			
 			//TODO: setup promo
 			if (proprties.contains("remove Promotion")) {
@@ -188,7 +183,7 @@ public class Base_cart extends SelTestCase {
 			double siteOrderTotal = Double.parseDouble(Cart.getOrderSubTotal().replace("$", "").trim());
 			logs.debug("Order total: " + siteOrderTotal);
 			sassert().assertTrue(siteOrdersubtotal == siteOrderTotal , "FAILED: voucher code is not removed correctly: <br>");
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			}//Remove Promotion.
 			
 //			if (proprties.contains("click checkout")) {
@@ -197,7 +192,7 @@ public class Base_cart extends SelTestCase {
 //				Cart.clickContinueShoping();
 //			}
 
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			
 			if (proprties.contains("Loggedin")) {
 				// navigate back to cart
@@ -205,7 +200,7 @@ public class Base_cart extends SelTestCase {
 				Cart.removeAllItemsFromCart();
 			}
 			
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 
 			sassert().assertAll();
 			Common.testPass();
@@ -215,7 +210,7 @@ public class Base_cart extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 

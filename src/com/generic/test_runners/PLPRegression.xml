@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="PLP regression" parallel="tests" thread-count="10" data-provider-thread-count="2">
+<suite name="PLP regression" parallel="tests" thread-count="2" data-provider-thread-count="2">
 
 	
 	<test name="PLP validation chrome">
@@ -9,8 +9,8 @@
               <class name="com.generic.tests.Search_PLP.PLP_Base" />
 		</classes>
 	</test><!-- Test -->
-	<test name="PLP validation firefox">
-		<parameter name="browserName" value="firefox"></parameter>
+	<test name="PLP validation Firefox">
+		<parameter name="browserName" value="Firefox"></parameter>
 		<classes>
               <class name="com.generic.tests.Search_PLP.PLP_Base" />
 		</classes>

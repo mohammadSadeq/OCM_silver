@@ -23,7 +23,6 @@ import com.generic.util.dataProviderUtils;
 
 public class LoginBase extends SelTestCase {
 
-	private static LinkedHashMap<String, Object> users = null;
 	private static int testCaseID;
 	// used sheet in test
 	public static final String testDataSheet = SheetVariables.loginSheet;
@@ -35,7 +34,6 @@ public class LoginBase extends SelTestCase {
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger(test.getName() + test.getIndex()));
 		testObject = test;
-		users = Common.readUsers();
 	}
 
 	@DataProvider(name = "Login", parallel = true)
@@ -78,7 +76,7 @@ public class LoginBase extends SelTestCase {
 				sassert().assertTrue(SignIn.checkUserAccount(), LoggingMsg.USER_IS_NOT_LOGGED_IN_SUCCESSFULLY);
 			}
 			if (proprties.equals("invalidUserEmail")) {
-				SignIn.fillLoginFormAndClickSubmit(caseMail, "1234567");
+				SignIn.fillLoginFormAndClickSubmit(caseMail.replace("@", ""), "1234567");
 				String alertMessage = SignIn.getMailErrorMsg();
 				sassert().assertTrue(alertMessage.contains(fieldsValidation),
 						"Error message is not as expected" + fieldsValidation + " : " + alertMessage);
@@ -122,14 +120,17 @@ public class LoginBase extends SelTestCase {
 				sassert().assertTrue(alertMessage.contains(fieldsValidation), failureMessage);
 			}
 			if (proprties.equals("Forgot password -Invalid Email")) {
-				SignIn.clickForgotPasswordBtn();
-				SignIn.typeForgottenPwdEmail(caseMail);
-				SignIn.clickForgotPasswordSubmitBtn();
-				Thread.sleep(1500);
-				String alertMessage = SignIn.getForgottenPwdEmailError();
-				String failureMessage = MessageFormat.format(LoggingMsg.ACTUAL_EXPECTED_ERROR, alertMessage,
-						fieldsValidation);
-				sassert().assertTrue(alertMessage.contains(fieldsValidation), failureMessage);
+				if(!getBrowserName().contains("mobile"))
+				{
+					SignIn.clickForgotPasswordBtn();
+					SignIn.typeForgottenPwdEmail(caseMail.replace("@", ""));
+					SignIn.clickForgotPasswordSubmitBtn();
+					Thread.sleep(1500);
+					String alertMessage = SignIn.getForgottenPwdEmailError();
+					String failureMessage = MessageFormat.format(LoggingMsg.ACTUAL_EXPECTED_ERROR, alertMessage,
+							fieldsValidation);
+					sassert().assertTrue(alertMessage.contains(fieldsValidation), failureMessage);
+				}
 			}
 			sassert().assertAll();
 			Common.testPass();
@@ -139,7 +140,7 @@ public class LoginBase extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 	}// test

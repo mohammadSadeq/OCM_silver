@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="RestPassword Regression" parallel="tests" thread-count="1" data-provider-thread-count="1">
-
-	<test name="RestPassword IE">
+<suite name="HomePageRegression" parallel="tests" thread-count="1" data-provider-thread-count="1">
+	<test name="HP_SC IE">
 		<parameter name="browserName" value="IE"></parameter>
 		<classes>
-			<class name="com.generic.tests.MyAccount_Password.ChangePassword_base" />
+			<class name="com.generic.tests.HomePage.HomePageBase" />
 		</classes>
 	</test><!-- Test -->
-
+	
 </suite> <!-- Suite -->

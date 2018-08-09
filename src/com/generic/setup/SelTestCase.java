@@ -25,6 +25,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import org.testng.xml.XmlTest;
 
+import com.generic.setup.GlobalVariables.browsers;
 import com.generic.util.ReportAnalyzer;
 import com.generic.util.ReportUtil;
 import com.generic.util.TestUtilities;
@@ -34,7 +35,7 @@ import com.generic.util.reportBuilder;
 public class SelTestCase {
 	
 	public static String time_date_format = "hh:mm:ss";
-	public static String time_date_formatScreenshot = "hhmmss.SSSaaa";
+	public static String time_date_formatScreenshot = "hhmmss-SSSaaa";
 	public static String reportFolderDateStampFormat = "MM-dd-yyyy";
 	public static String reportFolderTimeStampFormat = "HHmmss";
 	public static String testCaseRunDateStamp = "dd.MMMMM.yyyy";
@@ -78,6 +79,11 @@ public class SelTestCase {
     
     public static String rUNDATE = ReportUtil.now(time_date_format).toString();
     public static String suiteName;
+    
+    public static LinkedHashMap<String, Object> users =null ;
+    public static LinkedHashMap<String, Object> addresses = null; 
+    public static LinkedHashMap<String, Object> invintory = null;
+    public static LinkedHashMap<String, Object> paymentCards = null;
 
     public static String getBrowserName() {
         //return browserName;
@@ -199,9 +205,9 @@ public class SelTestCase {
     			Thread.sleep(RandomUtils.nextInt(900,1200));
     		}
     		else {
-    		if (BrowserName.equals("firefox"))
+    		if (BrowserName.equals(GlobalVariables.browsers.firefox))
 				Thread.sleep(1000);
-			else if (BrowserName.equals("chrome"))
+			else if (BrowserName.equals(GlobalVariables.browsers.chrome))
 				Thread.sleep(500);
 			else
 				Thread.sleep(RandomUtils.nextInt(900,1200));
@@ -217,7 +223,7 @@ public class SelTestCase {
     	
     }
     
-    public static void failureHandeler(Throwable t)
+    public static void failureHandeler(Throwable t, String info)
     {
     	setTestCaseDescription(getTestCaseDescription());
 		logs.debug(MessageFormat.format(LoggingMsg.DEBUGGING_TEXT, t.getMessage()));
@@ -234,7 +240,7 @@ public class SelTestCase {
 				getDriver().getPageSource()+"\r\n" + 
 				"  </div>\r\n" + 
 				"<br>");			
-		ReportUtil.takeScreenShot(getDriver());
+		ReportUtil.takeScreenShot(getDriver(), info);
 		Assert.assertTrue(false, t.getMessage());
     }
     
@@ -332,16 +338,28 @@ public class SelTestCase {
     	getCurrentFunctionName(true);
     	
     	WebDriver driver = SelTestCase.getDriver();
-        if (driver != null) {
+        if (driver != null && !getBrowserName().contains(browsers.iOS)) {
             driver.quit();
         }
         getCurrentFunctionName(false);
     }
     
+    @BeforeSuite
+    public static void excelSheetReader() throws Exception
+    {
+    	logs.debug("loading data store");
+    	users = Common.readUsers();
+		addresses = Common.readAddresses();
+		invintory = Common.readLocalInventory();
+		paymentCards = Common.readPaymentcards();
+		
+    }
     
     @AfterSuite
     public static void reportMaker() throws IOException
     {
+    	getCurrentFunctionName(true);
+    	
     	ArrayList<HashMap<String, String>> casesDetails = null;
     	try {
 			TestUtilities.reportSetup();
@@ -387,5 +405,6 @@ public class SelTestCase {
          	SelTestCase.logs.debug(MessageFormat.format(LoggingMsg.DEBUGGING_TEXT, "Ignor sending report"));
          }
     	 ReportUtil.copyReportToC(SelTestCase.logDir,"C://AutoRepo");
+    	 getCurrentFunctionName(false);
     }
 }

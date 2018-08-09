@@ -25,11 +25,6 @@ import com.generic.util.SASLogger;
 
 public class Base_MiniCart extends SelTestCase {
 
-	private static LinkedHashMap<String, Object> addresses = null;
-	private static LinkedHashMap<String, Object> invintory = null;
-	private static LinkedHashMap<String, Object> paymentCards = null;
-	private static LinkedHashMap<String, Object> users = null;
-
 	// user types
 	public static final String guestUser = "guest";
 	public static final String freshUser = "fresh";
@@ -48,10 +43,6 @@ public class Base_MiniCart extends SelTestCase {
 	public static void initialSetUp(XmlTest test) throws Exception {
 		Testlogs.set(new SASLogger("checkout_setup"));
 		testObject = test;
-		addresses = Common.readAddresses();
-		invintory = Common.readLocalInventory();
-		paymentCards = Common.readPaymentcards();
-		users = Common.readUsers();
 	}
 
 	@DataProvider(name = "miniCarts", parallel = true)
@@ -137,7 +128,7 @@ public class Base_MiniCart extends SelTestCase {
 			t.printStackTrace();
 			String temp = getTestCaseReportName();
 			Common.testFail(t, temp);
-			ReportUtil.takeScreenShot(getDriver());
+			ReportUtil.takeScreenShot(getDriver(), testDataSheet + "_" + caseId);
 			Assert.assertTrue(false, t.getMessage());
 		} // catch
 	}// test
@@ -153,7 +144,7 @@ public class Base_MiniCart extends SelTestCase {
 		logs.debug(MessageFormat.format(LoggingMsg.SEL_TEXT, userdetails));
 		logs.debug((String) userdetails.get(Registration.keys.email));
 		logs.debug((String) userdetails.get(Registration.keys.password));
-		SignIn.logIn((String) userdetails.get(Registration.keys.email),
+		SignIn.logIn(getSubMailAccount((String) userdetails.get(Registration.keys.email)),
 				(String) userdetails.get(Registration.keys.password));
 
 		prepareCartNotLoggedInUser(product);

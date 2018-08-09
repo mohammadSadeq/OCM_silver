@@ -101,7 +101,7 @@ public class ReportAnalyzer {
 	public static void splitLogs()
 	{
 		Path PathObj = Paths.get(EnvironmentFiles.getLogFilePath(),EnvironmentFiles.getLogFileName());
-		//Path PathObj = Paths.get("F:\\WS\\SAS_FW\\logs\\Application.log");
+		//Path PathObj = Paths.get("F:\\WS\\OCM_Silver\\logs\\Application.log");
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 		String[] content = null;
@@ -175,7 +175,7 @@ public class ReportAnalyzer {
 	
 	public static void splitCases() {
 		Path PathObj = Paths.get(EnvironmentFiles.getLogFilePath(),"reportLogs");
-		//Path PathObj = Paths.get("F:\\WS\\SAS_FW_testNg_justDriver_static\\logs\\reportLogs");
+		//Path PathObj = Paths.get("F:\\WS\\OCM_Silver\\logs\\reportLogs");
 		
 		File index = new File(PathObj.toString());
 		String[]entries = index.list();
@@ -230,7 +230,7 @@ public class ReportAnalyzer {
 	public static void copyScreenShots()
 	{
 		Path PathObj = Paths.get(EnvironmentFiles.getLogFilePath());
-		//Path PathObj = Paths.get("F:\\WS\\SAS_FW_testNg_justDriver_static\\logs");
+		//Path PathObj = Paths.get("F:\\WS\\OCM_Silver\\logs");
 		
 		File index = new File(PathObj.toString());
 		String[]entries = index.list();
@@ -249,7 +249,10 @@ public class ReportAnalyzer {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		ReportAnalyzer.analyze("F:\\WS\\SAS_FW/AutomationReport/AutoRep_12-26-2017142235//12.html",5000);
+		//ReportAnalyzer.splitLogs();
+		//ReportAnalyzer.splitCases();
+		//ReportAnalyzer.copyScreenShots();
+		//ReportAnalyzer.analyze("F:\\WS\\SAS_FW/AutomationReport/AutoRep_12-26-2017142235//12.html",5000);
 		
 	}
 

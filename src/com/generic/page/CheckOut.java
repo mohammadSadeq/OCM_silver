@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import com.generic.selector.CheckOutSelectors;
 import com.generic.setup.ExceptionMsg;
+import com.generic.setup.GlobalVariables;
 import com.generic.setup.LoggingMsg;
 import com.generic.setup.SelTestCase;
 import com.generic.util.ReportUtil;
@@ -532,12 +533,16 @@ public class CheckOut extends SelTestCase {
 				gotoPaytment();
 				logs.debug("Waiting shipping address verification system");
 				Thread.sleep(4000);
-				if (getBrowserName().contains("firefox"))
+				if (getBrowserName().contains(GlobalVariables.browsers.firefox))
 					Thread.sleep(4000);
-				if (getBrowserName().contains("IE"))
+				if (getBrowserName().contains(GlobalVariables.browsers.IE))
 					Thread.sleep(10000);
 
-				picksuggestedAddress();
+				try {
+					picksuggestedAddress();
+				} catch (Exception e) {
+					logs.debug("#Warning: suggested address mdule is not fired ");
+				}
 
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
@@ -550,12 +555,19 @@ public class CheckOut extends SelTestCase {
 		// done-ocm
 		private static void picksuggestedAddress() throws Exception {
 			try {
+				getCurrentFunctionName(true);
 				List<String> subStrArr = new ArrayList<String>();
 				List<String> valuesArr = new ArrayList<String>();
-				getCurrentFunctionName(true);
 				subStrArr.add(CheckOutSelectors.pickSuggestedAddrress);
 				valuesArr.add("");
+				int tries = 0;
+				while (SelectorUtil.isNotDisplayed(subStrArr)) {
+					Thread.sleep(3000);
+					if (tries++ > 4)
+						break;
+				}
 				SelectorUtil.initializeSelectorsAndDoActions(subStrArr, valuesArr);
+				
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {
@@ -948,13 +960,13 @@ public class CheckOut extends SelTestCase {
 				// clickAddPaymentMethod();
 				if (!cardtype.contains("paypal")) {
 					fill(cardtype, cardholder, cardNumber, expireMonth, expireYear, CVC);
-					ReportUtil.takeScreenShot(getDriver());
+					ReportUtil.takeScreenShot(getDriver(), "payment_debug");
 				}
 
 				fillBillingAddress(countery, firstName, lastName, address, city, postal, phone);
-				ReportUtil.takeScreenShot(getDriver());
+				ReportUtil.takeScreenShot(getDriver(), "payment_debug");
 				clickNext();
-				ReportUtil.takeScreenShot(getDriver());
+				ReportUtil.takeScreenShot(getDriver(), "payment_debug");
 				if (cardtype.contains("paypal")) {
 					Thread.sleep(20000);
 					String mainWindow = switchToPayPalWindow();
@@ -966,7 +978,7 @@ public class CheckOut extends SelTestCase {
 					Thread.sleep(20000);
 				}
 				Thread.sleep(1000);
-				ReportUtil.takeScreenShot(getDriver());
+				ReportUtil.takeScreenShot(getDriver(), "payment_debug");
 				getCurrentFunctionName(false);
 			} catch (NoSuchElementException e) {
 				logs.debug(MessageFormat.format(ExceptionMsg.PageFunctionFailed, new Object() {

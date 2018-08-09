@@ -7,8 +7,8 @@
 			<class name="com.generic.tests.HomePage.HomePageBase" />
 		</classes>
 	</test><!-- Test -->
-	<test name="checkout firefox">
-	<parameter name="browserName" value="firefox"></parameter>
+	<test name="checkout Firefox">
+	<parameter name="browserName" value="Firefox"></parameter>
 	<classes>
 		<class name="com.generic.tests.HomePage.HomePageBase" />
 	</classes>
